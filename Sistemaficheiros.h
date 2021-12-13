@@ -27,5 +27,5 @@ class Sistemaficheiros
 	void PesquisarAllFicheiros(list<string>& Ires, const string& file);
 	void RenomearFicheiros(const string& fich_old, const string& fich_new);
 	bool FicheiroDuplicados();
-	bool CopyBatch(const string& padrao, const string& DirOrigem, const string& DirDestino)
-}
+	bool CopyBatch(const string& padrao, const string& DirOrigem, const string& DirDestino);
+};

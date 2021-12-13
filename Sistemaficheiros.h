@@ -1,8 +1,11 @@
 #pragma once
 using namespace std;
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <stdlib.h>
 #include <string.h>
+#include "dirent.h"
+#include "sys/stat.h"
 #include<list>
 
 class Sistemaficheiros
@@ -27,5 +30,5 @@ class Sistemaficheiros
 	void PesquisarAllFicheiros(list<string>& Ires, const string& file);
 	void RenomearFicheiros(const string& fich_old, const string& fich_new);
 	bool FicheiroDuplicados();
-	bool CopyBatch(const string& padrao, const string& DirOrigem, const string& DirDestino)
-}
+	bool CopyBatch(const string& padrao, const string& DirOrigem, const string& DirDestino);
+};

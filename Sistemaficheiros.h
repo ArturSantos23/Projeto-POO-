@@ -1,34 +1,35 @@
 #pragma once
-using namespace std;
-#define _CRT_SECURE_NO_WARNINGS
-#include <iostream>
-#include <stdlib.h>
-#include <string.h>
-#include "dirent.h"
-#include "sys/stat.h"
-#include<list>
+#include "libs.h"
+#include "Diretoria.h"
+#include "Ficheiro.h"
 
-class Sistemaficheiros
+class SistemaFicheiros
 {
-	bool Load(const string& path);
-	int ContarFicheiros();
-	int ContarDiretorias();
-	int Memoria();
-	string DiretoriaMaisElementos();
-	string DiretoriaMenosElementos();
-	string FicheiroMaior();
-	string DiretoriaMaisEspaco();
-	string Search(const string& s, int Tipo);
-	bool RemoverAll(const string& s, const string& tipo);
-	void Escrever_XML(const string& s);
-	bool Ler_XML(const string& s);
-	bool MoverFicheiro(const string& Fich, const string& DirNova);
-	bool MoverDir(const string& DirOld, const string& DirNova);
-	string DataFicheiro(const string& ficheiro);
-	//void Tree(const string* fich = "tree.txt");
-	void PesquisarAllDiretorias(list<string>& Ires, const string& dir);
-	void PesquisarAllFicheiros(list<string>& Ires, const string& file);
-	void RenomearFicheiros(const string& fich_old, const string& fich_new);
-	bool FicheiroDuplicados();
-	bool CopyBatch(const string& padrao, const string& DirOrigem, const string& DirDestino);
+    Diretoria* Raiz = NULL; //Enquanto nao for especificada, a Diretoria Raiz sera NULL
+    string Path;
+
+    public:
+        SistemaFicheiros();
+        bool LoadRoot(const string& path);                                                                  //alínea 1 (root)
+        bool Load(const string& path, Diretoria* Dir);                                                      //alínea 1
+        int ContarFicheiros();                                                                              //alínea 2
+        int ContarDirectorias();                                                                            //alínea 3
+        int Memoria();                                                                                      //alínea 4
+        string DiretoriaMaisElementos();                                                                    //alínea 5
+        string DiretoriaMenosElementos();                                                                   //alínea 6
+        string FicheiroMaior();                                                                             //alínea 7
+        string DiretoriaMaisEspaco();                                                                       //alínea 8
+        string Search(const string& s, int Tipo);                                                           //alínea 9
+        bool RemoverAll(const string& s, const string& tipo);                                               //alínea 10
+        void Escrever_XML(const string& s);                                                                 //alínea 11
+        bool Ler_XML(const string& s);                                                                      //alínea 12
+        bool MoveFicheiro(const string& Fich, const string& DirNova);                                       //alínea 13
+        bool MoverDirectoria(const string& DirOld, const string& DirNew);                                   //alínea 14
+        string DataFicheiro(const string& ficheiro);                                                        //alínea 15
+        void PesquisarAllDirectorias(list<string>& lres, const string& dir);                                //alínea 17
+        void PesquisarAllFicheiros(list<string>& lres, const string& file);                                 //alínea 18
+        void RenomearFicheiros(const string& fich_old, const string& fich_new);                             //alínea 19
+        bool FicheirosDuplicados();                                                                         //alínea 20
+        bool CopyBatch(const string& padrao, const string& DirOrigem, const string& DirDestino);            //alínea 21
+        virtual ~SistemaFicheiros();
 };

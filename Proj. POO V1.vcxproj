@@ -139,10 +139,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Diretoria.cpp" />
+    <ClCompile Include="Ficheiro.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Menus.cpp" />
+    <ClCompile Include="ObjetoGeral.cpp" />
     <ClCompile Include="Sistemaficheiros.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Diretoria.h" />
+    <ClInclude Include="Ficheiro.h" />
+    <ClInclude Include="libs.h" />
+    <ClInclude Include="Menus.h" />
+    <ClInclude Include="ObjetoGeral.h" />
     <ClInclude Include="Sistemaficheiros.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

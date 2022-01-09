@@ -4,7 +4,6 @@ Ficheiro::Ficheiro(tm* _data, int _tamanho, string _caminho, string _nome)
     : ObjetoGeral(_data, _caminho, _nome)
 {
     Tamanho = _tamanho;
-
 }
 
 Ficheiro::~Ficheiro()

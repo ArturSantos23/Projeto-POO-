@@ -106,7 +106,7 @@ int Menus::MenuRemover()
     return opcao;
 }
 
-string Menus::NomeDiretoriaRemover()
+string Menus::RemoverDiretoria()
 {
     string Nome;
     cout << "Qual o nome da diretoria que pretende eliminar?" << endl;
@@ -141,11 +141,11 @@ int Menus::MenuTree()
 
 void Menus::Select(SistemaFicheiros* P)
 {
-    int Op, OpAux;
+    int Op, OpAux, aux_loaded = 0;
     char buff[PATH_MAX];
     _getcwd(buff, PATH_MAX);
     string current_dir(buff);
-    string Str, StrAux;
+    string Str, StrAux, old_file, new_file;
     list<string> LResDir;
     list<string> LResFich;
 
@@ -155,188 +155,302 @@ void Menus::Select(SistemaFicheiros* P)
         Op = Menu();
         switch (Op)
         {
-        case 1:
-            //if (!P->LoadRoot("C:/Users/artur/Desktop/Artur/2º Ano Engenharia Informática/1º Semestre/Programacao Orientada a Objetos/Projeto/DirectoriaTeste"))
-            if (!P->LoadRoot(current_dir))
-                cout << "Nao foi possivel abrir a diretoria!" << endl;
-            else
-                cout << "Diretoria carregada com exito!" << endl;
-            cout << "Foi carregada a seguinte diretoria: " << current_dir << endl;
-
-            system("pause");
-            break;
-
-        case 2:
-            //fazer verificação se LoadRoot foi executado
-            cout << "Numero de ficheiros guardados em memoria: " << P->ContarFicheiros() << endl;
-            system("pause");
-            break;
-
-        case 3:
-            //fazer verificação se LoadRoot foi executado
-            cout << "Numero de diretorias guardadas em memoria: " << P->ContarDirectorias() << endl;
-            system("pause");
-            break;
-
-        case 4:
-            //fazer verificação se LoadRoot foi executado
-            cout << "Estao alocados " << P->Memoria() << " bytes na memoria!" << endl;
-            system("pause");
-            break;
-
-        case 5:
-            //fazer verificação se LoadRoot foi executado
-            cout << "A diretoria com mais elementos e: " << P->DiretoriaMaisElementos() << endl;
-            system("pause");
-            break;
-
-        case 6:
-            //fazer verificação se LoadRoot foi executado
-            cout << "A diretoria com menos elementos e: " << P->DiretoriaMenosElementos() << endl;
-            system("pause");
-            break;
-
-        case 7:
-            //fazer verificação se LoadRoot foi executado
-            cout << "O ficheiro maior e: " << P->FicheiroMaior() << endl;
-            system("pause");
-            break;
-
-        case 8:
-            //fazer verificação se LoadRoot foi executado
-            cout << "A maior diretoria e: " << P->DiretoriaMaisEspaco() << endl;
-            system("pause");
-            break;
-
-        case 9:
-            //fazer verificação se LoadRoot foi executado
-            OpAux = MenuSearch();
-            Str = NomeSearch(OpAux);
-            cout << "Resultado da procura: " << P->Search(Str, OpAux) << endl;
-            system("pause");
-            break;
-
-        case 10:                                        //Esta a dar erro
-            OpAux = MenuRemover();
-            if (OpAux == 1)
+            do
             {
-                Str = NomeDiretoriaRemover();
-                P->RemoverAll(Str, "DIR");
-            }
-            else
-                P->RemoverAll(".", "Fich");
-            cout << "Eliminacao concluida!" << endl;
-            system("pause");
-            break;
+            case 1:
+                //if (!P->LoadRoot("C:/Users/artur/Desktop/Artur/2º Ano Engenharia Informática/1º Semestre/Programacao Orientada a Objetos/Projeto/DirectoriaTeste"))
+                if (!P->LoadRoot(current_dir))
+                {
+                    cout << "Nao foi possivel abrir a diretoria!" << endl;
+                }
+                else
+                {
+                    cout << "Diretoria carregada com exito!" << endl;
+                    cout << "Foi carregada a seguinte diretoria: " << current_dir << endl;
+                    aux_loaded = 1;
+                }
 
-        case 11:
-            //fazer verificação se LoadRoot foi executado
-            cout << "Qual o nome do ficheiro para o qual pretende guardar o conteudo em XML?" << endl;
-            cin >> Str;
-            P->Escrever_XML(Str);
-            system("pause");
-            break;
+                system("pause");
+                break;
 
-        case 12:
-            cout << "Por fazer" << endl;
-            //cout << "Lemos em XML depois" << endl;
-            //Ler_XML();
-            system("pause");
-            break;
+            case 2:
+                if (aux_loaded == 0)
+                {
+                    cout << "ERRO! Não foi possível carregar a directoria" << endl;
+                    system("pause");
+                }
+                else
+                {
+                    cout << "Numero de ficheiros guardados em memoria: " << P->ContarFicheiros() << endl;
+                    system("pause");
+                }
+                break;
 
-        case 13:
-            cout << "Por fazer" << endl;
-            //                cout << "Qual o nome do ficheiro que pretende mover?" << endl;
-            //                cin >> Str;
-            //
-            //                cout << "Qual o nome da diretoria para a qual pretende mover?" << endl;
-            //                cin >> StrAux;
-            //                if(P->MoveFicheiro(Str, StrAux))
-            //                    cout << "Movido com sucesso!" << endl;
-            //                else
-            //                    cout << "Erro a mover!" << endl;
-            system("pause");
-            break;
+            case 3:
+                if (aux_loaded == 0)
+                {
+                    cout << "ERRO! Não foi possível carregar a directoria" << endl;
+                    system("pause");
+                }
+                else
+                {
+                    cout << "Numero de diretorias guardadas em memoria: " << P->ContarDirectorias() << endl;
+                    system("pause");
+                }
+                break;
 
-        case 14:
-            cout << "Por fazer" << endl;
-            // cout << "Movemos directoria depois" << endl;
-            //MoverDirectoria();
-            system("pause");
-            break;
+            case 4:
+                if (aux_loaded == 0)
+                {
+                    cout << "ERRO! Não foi possível carregar a directoria" << endl;
+                    system("pause");
+                }
+                else
+                {
+                    cout << "Estao alocados " << P->Memoria() << " bytes na memoria!" << endl;
+                    system("pause");
+                }
+                break;
 
-        case 15:
-            //fazer verificação se LoadRoot foi executado
-            cout << "Qual o nome do ficheiro do qual pretende saber a data?" << endl;
-            cin >> StrAux;
-            cout << P->DataFicheiro(StrAux) << endl;
-            system("pause");
-            break;
+            case 5:
+                if (aux_loaded == 0)
+                {
+                    cout << "ERRO! Não foi possível carregar a directoria" << endl;
+                    system("pause");
+                }
+                else
+                {
+                    cout << "A diretoria com mais elementos e: " << P->DiretoriaMaisElementos() << endl;
+                    system("pause");
+                }
+                break;
 
-        case 16:
-            OpAux = MenuTree();
-            if (OpAux == 0)
-                system("tree /f /a > tree.txt");    //guarda a tree do path atual para um ficheiro (tree.txt)
-            else
-                system("tree /f");                  //mostra a tree dath atual no ecrã
+            case 6:
+                if (aux_loaded == 0)
+                {
+                    cout << "ERRO! Não foi possível carregar a directoria" << endl;
+                    system("pause");
+                }
+                else
+                {
+                    cout << "A diretoria com menos elementos e: " << P->DiretoriaMenosElementos() << endl;
+                    system("pause");
+                }
+                break;
 
-            system("pause");
-            break;
+            case 7:
+                if (aux_loaded == 0)
+                {
+                    cout << "ERRO! Não foi possível carregar a directoria" << endl;
+                    system("pause");
+                }
+                else
+                {
+                    cout << "O ficheiro maior e: " << P->FicheiroMaior() << endl;
+                    system("pause");
+                }
+                break;
 
-        case 17:
-            //fazer verificação se LoadRoot foi executado
-            cout << "Qual o nome da(s) diretoria(s) a pesquisar?" << endl;
-            cin >> Str;
-            system("cls");
-            P->PesquisarAllDirectorias(LResDir, Str);
-            cout << "Resultados obtidos:" << endl;
-            for (list<string>::iterator it = LResDir.begin(); it != LResDir.end(); ++it)
-                cout << (*it) << endl;
-            LResDir.clear();
-            system("pause");
-            break;
+            case 8:
+                if (aux_loaded == 0)
+                {
+                    cout << "ERRO! Não foi possível carregar a directoria" << endl;
+                    system("pause");
+                }
+                else
+                {
+                    cout << "A maior diretoria e: " << P->DiretoriaMaisEspaco() << endl;
+                    system("pause");
+                }
+                break;
 
-        case 18:
-            //fazer verificação se LoadRoot foi executado
-            cout << "Qual o nome do(s) ficheiro(s) a pesquisar?" << endl;
-            cin >> Str;
-            system("cls");
-            P->PesquisarAllFicheiros(LResFich, Str);
-            cout << "Resultados obtidos:" << endl;
-            for (list<string>::iterator it = LResFich.begin(); it != LResFich.end(); ++it)
-                cout << (*it) << endl;
-            LResFich.clear();
-            system("pause");
-            break;
+            case 9:
+                if (aux_loaded == 0)
+                {
+                    cout << "ERRO! Não foi possível carregar a directoria" << endl;
+                    system("pause");
+                }
+                else
+                {
+                    OpAux = MenuSearch();
+                    Str = NomeSearch(OpAux);
+                    cout << "Resultado da procura: " << P->Search(Str, OpAux) << endl;
+                    system("pause");
+                }
+                break;
 
-        case 19:
-            /*
-            //fazer verificação se LoadRoot foi executado
-            Está só a renomear em memória, e não "fisicamente". O ficheiro não é renomeado!!!
-            */
-            cout << "Qual o nome do(s) ficheiro(s) a renomear?" << endl;
-            cin >> Str;
-            cout << "Qual o novo nome a inserir?" << endl;
-            cin >> StrAux;
-            P->RenomearFicheiros(Str, StrAux);
-            system("pause");
-            break;
+            case 10:                                        //Esta a dar erro
+                if (aux_loaded == 0)
+                {
+                    cout << "ERRO! Não foi possível carregar a directoria" << endl;
+                    system("pause");
+                }
+                else
+                {
+                    OpAux = MenuRemover();
+                    if (OpAux == 1)
+                    {
+                        Str = RemoverDiretoria();
+                        P->RemoverAll(Str, "DIR");
+                    }
+                    else
+                        P->RemoverAll(".", "Fich");
+                    cout << "Eliminacao concluida!" << endl;
+                    system("pause");
+                }
+                break;
 
-        case 20:
-            //fazer verificação se LoadRoot foi executado
-            if (P->FicheirosDuplicados())
-                cout << "Existem ficheiros duplicados!" << endl;
-            else
-                cout << "Nao existem ficheiros duplicados!" << endl;
-            system("pause");
-            break;
+            case 11:
+                if (aux_loaded == 0)
+                {
+                    cout << "ERRO! Não foi possível carregar a directoria" << endl;
+                    system("pause");
+                }
+                else
+                {
+                    cout << "Qual o nome do ficheiro para o qual pretende guardar o conteudo em XML?" << endl;
+                    cin >> Str;
+                    P->Escrever_XML(Str);
+                    system("pause");
+                }
+                break;
 
-        case 21:
-            cout << "Por fazer" << endl;
-            //cout << "Copiamos ficheiros de uma directoria para outra depois" << endl;
-            //CopyBatch();
-            system("pause");
-            break;
+            case 12:
+                cout << "Por fazer" << endl;
+                //cout << "Lemos em XML depois" << endl;
+                //Ler_XML();
+                system("pause");
+                break;
+
+            case 13:
+                cout << "Por fazer" << endl;
+                //                cout << "Qual o nome do ficheiro que pretende mover?" << endl;
+                //                cin >> Str;
+                //
+                //                cout << "Qual o nome da diretoria para a qual pretende mover?" << endl;
+                //                cin >> StrAux;
+                //                if(P->MoveFicheiro(Str, StrAux))
+                //                    cout << "Movido com sucesso!" << endl;
+                //                else
+                //                    cout << "Erro a mover!" << endl;
+                system("pause");
+                break;
+
+            case 14:
+                cout << "Por fazer" << endl;
+                // cout << "Movemos directoria depois" << endl;
+                //MoverDirectoria();
+                system("pause");
+                break;
+
+            case 15:
+                if (aux_loaded == 0)
+                {
+                    cout << "ERRO! Não foi possível carregar a directoria" << endl;
+                    system("pause");
+                }
+                else
+                {
+                    cout << "Qual o nome do ficheiro do qual pretende saber a data?" << endl;
+                    cin >> StrAux;
+                    cout << P->DataFicheiro(StrAux) << endl;
+                    system("pause");
+                }
+                break;
+
+            case 16:
+                OpAux = MenuTree();
+                if (OpAux == 0)
+                    system("tree /f /a > tree.txt");    //guarda a tree do path atual para um ficheiro (tree.txt)
+                else
+                    system("tree /f");                  //mostra a tree do path atual no ecrã
+
+                system("pause");
+                break;
+
+            case 17:
+                if (aux_loaded == 0)
+                {
+                    cout << "ERRO! Não foi possível carregar a directoria" << endl;
+                    system("pause");
+                }
+                else
+                {
+                    cout << "Qual o nome da(s) diretoria(s) a pesquisar?" << endl;
+                    cin >> Str;
+                    system("cls");
+                    P->PesquisarAllDirectorias(LResDir, Str);
+                    cout << "Resultados obtidos:" << endl;
+                    for (list<string>::iterator it = LResDir.begin(); it != LResDir.end(); ++it)
+                        cout << (*it) << endl;
+                    LResDir.clear();
+                    system("pause");
+                }
+                break;
+
+            case 18:
+                if (aux_loaded == 0)
+                {
+                    cout << "ERRO! Não foi possível carregar a directoria" << endl;
+                    system("pause");
+                }
+                else
+                {
+                    cout << "Qual o nome do(s) ficheiro(s) a pesquisar?" << endl;
+                    cin >> Str;
+                    system("cls");
+                    P->PesquisarAllFicheiros(LResFich, Str);
+                    cout << "Resultados obtidos:" << endl;
+                    for (list<string>::iterator it = LResFich.begin(); it != LResFich.end(); ++it)
+                        cout << (*it) << endl;
+                    LResFich.clear();
+                    system("pause");
+                }
+                break;
+
+            case 19:
+                /*
+                Está só a renomear em memória, e não "fisicamente". O ficheiro não é renomeado!!!
+                */
+                if (aux_loaded == 0)
+                {
+                    cout << "ERRO! Não foi possível carregar a directoria" << endl;
+                    system("pause");
+                }
+                else
+                {
+                    cout << "Qual o nome do(s) ficheiro(s) a renomear?" << endl;
+                    cin >> Str;
+                    cout << "Qual o novo nome a inserir?" << endl;
+                    cin >> StrAux;
+                    P->RenomearFicheiros(Str, StrAux);
+                    system("pause");
+                }
+                break;
+
+            case 20:
+                if (aux_loaded == 0)
+                {
+                    cout << "ERRO! Não foi possível carregar a directoria" << endl;
+                    system("pause");
+                }
+                else
+                {
+                    if (P->FicheirosDuplicados())
+                        cout << "Existem ficheiros duplicados!" << endl;
+                    else
+                        cout << "Nao existem ficheiros duplicados!" << endl;
+                    system("pause");
+                }
+                break;
+
+            case 21:
+                //cout << "Copiamos ficheiros de uma directoria para outra depois" << endl;
+                //CopyBatch();
+                system("pause");
+                break;
+
+            } while (aux_loaded == 0);
         }
         if (Op == 0)
             cout << "Adeus!" << endl;

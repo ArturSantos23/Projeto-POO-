@@ -223,7 +223,7 @@ void SistemaFicheiros::RenomearFicheiros(const string& fich_old, const string& f
 
 bool SistemaFicheiros::FicheirosDuplicados()
 {
-    list<string> LNomes; //Pouca rapidez quando existem muitos ficheiros!
+    list<string> LNomes;
     bool Resultado = false;
     Resultado = this->Raiz->FicheirosDuplicados(LNomes);
     return Resultado;

@@ -9,7 +9,7 @@ public:
     static int MenuSearch();
     static string NomeSearch(int Op);
     static int MenuRemover();
-    static string NomeDiretoriaRemover();
+    static string RemoverDiretoria();
     static int MenuTree();
     static void Select(SistemaFicheiros* P);
 };

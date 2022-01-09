@@ -252,15 +252,15 @@ void Diretoria::EscreverXML(ofstream& File, int Espacos)
 
 tm* Diretoria::DataFicheiros(const string& NomeFich)
 {
-    for (list<Diretoria*>::iterator it = LDir.begin(); it != LDir.end(); ++it)
+    for (list<Ficheiro*>::iterator it = LFich.begin(); it != LFich.end(); ++it)
     {
-        (*it)->DataFicheiros(NomeFich);
+        if ((*it)->GetNome().compare(NomeFich) == 0)
+            return ((*it)->GetData(NomeFich));
     }
 
-    for (list<Ficheiro*>::iterator it2 = LFich.begin(); it2 != LFich.end(); ++it2)
+    for (list<Diretoria*>::iterator it2 = LDir.begin(); it2 != LDir.end(); ++it2)
     {
-        if ((*it2)->GetNome().compare(NomeFich) == 0)
-            return ((*it2)->GetData());
+        (*it2)->DataFicheiros(NomeFich);
     }
     return NULL;
 }

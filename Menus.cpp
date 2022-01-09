@@ -8,7 +8,7 @@ int Menus::Menu()
     {
         system("cls");
         cout << "#--------------------------------------------------MENU--------------------------------------------------#" << endl;
-        cout << "|  1- Carregar uma diretoria                                                                             |" << endl;
+        cout << "|  1- Carregar a diretoria                                                                               |" << endl;
         cout << "|  2- Contar o numero de ficheiros guardados em memoria                                                  |" << endl;
         cout << "|  3- Contar o numero de diretorias guardadas em memoria                                                 |" << endl;
         cout << "|  4- Determinar toda a memoria ocupada                                                                  |" << endl;
@@ -141,25 +141,25 @@ int Menus::MenuTree()
 
 void Menus::Select(SistemaFicheiros* P)
 {
-    int Op, OpAux, aux_loaded = 0;
+    int Opcao, OpAux, aux_loaded = 0;
     char buff[PATH_MAX];
     _getcwd(buff, PATH_MAX);
     string current_dir(buff);
-    string Str, StrAux, old_file, new_file;
+    string Str, StrAux, old_filename, new_filename;
     list<string> LResDir;
     list<string> LResFich;
 
     do
     {
         system("cls");
-        Op = Menu();
-        switch (Op)
+        Opcao = Menu();
+        switch (Opcao)
         {
             do
             {
             case 1:
                 //if (!P->LoadRoot("C:/Users/artur/Desktop/Artur/2º Ano Engenharia Informática/1º Semestre/Programacao Orientada a Objetos/Projeto/DirectoriaTeste"))
-                if (!P->LoadRoot(current_dir))
+                if (!P->LoadRoot(current_dir))  //faz load da directoria onde o programa se encontra
                 {
                     cout << "Nao foi possivel abrir a diretoria!" << endl;
                 }
@@ -169,7 +169,6 @@ void Menus::Select(SistemaFicheiros* P)
                     cout << "Foi carregada a seguinte diretoria: " << current_dir << endl;
                     aux_loaded = 1;
                 }
-
                 system("pause");
                 break;
 
@@ -378,7 +377,6 @@ void Menus::Select(SistemaFicheiros* P)
                 {
                     cout << "Qual o nome da(s) diretoria(s) a pesquisar?" << endl;
                     cin >> Str;
-                    system("cls");
                     P->PesquisarAllDirectorias(LResDir, Str);
                     cout << "Resultados obtidos:" << endl;
                     for (list<string>::iterator it = LResDir.begin(); it != LResDir.end(); ++it)
@@ -398,7 +396,6 @@ void Menus::Select(SistemaFicheiros* P)
                 {
                     cout << "Qual o nome do(s) ficheiro(s) a pesquisar?" << endl;
                     cin >> Str;
-                    system("cls");
                     P->PesquisarAllFicheiros(LResFich, Str);
                     cout << "Resultados obtidos:" << endl;
                     for (list<string>::iterator it = LResFich.begin(); it != LResFich.end(); ++it)
@@ -409,9 +406,6 @@ void Menus::Select(SistemaFicheiros* P)
                 break;
 
             case 19:
-                /*
-                Está só a renomear em memória, e não "fisicamente". O ficheiro não é renomeado!!!
-                */
                 if (aux_loaded == 0)
                 {
                     cout << "ERRO! Não foi possível carregar a directoria" << endl;
@@ -420,11 +414,16 @@ void Menus::Select(SistemaFicheiros* P)
                 else
                 {
                     cout << "Qual o nome do(s) ficheiro(s) a renomear?" << endl;
-                    cin >> Str;
-                    cout << "Qual o novo nome a inserir?" << endl;
-                    cin >> StrAux;
-                    P->RenomearFicheiros(Str, StrAux);
-                    system("pause");
+                    cin.ignore(); //Ignora o numero de caracteres que o user epecificar quando a função é chamada
+                    cin >> old_filename;
+                    if (P->VerificarExistenciaFicheiro(old_filename))
+                    {
+                        cout << "Qual o novo nome a inserir?" << endl;
+                        cin >> new_filename;
+                        P->RenomearFicheiros(old_filename, new_filename);   //renomeia em "memória" (para efeitos de pesquisa através do uso das listas)
+                        rename(old_filename.c_str(), new_filename.c_str()); //renomeia o ficheiro fisicamente
+                        system("pause");
+                    }
                 }
                 break;
 
@@ -452,7 +451,12 @@ void Menus::Select(SistemaFicheiros* P)
 
             } while (aux_loaded == 0);
         }
-        if (Op == 0)
+        if (Opcao == 0)
             cout << "Adeus!" << endl;
-    } while (Op != 0);
+        else if(Opcao < 0 || Opcao > 21)
+        {
+            cout << "Insira uma opcao valida" << endl;
+            system("pause");
+        }
+    } while (Opcao != 0);
 }

@@ -45,7 +45,7 @@ bool SistemaFicheiros::Load(const string& path, Diretoria* Dir)
             if ((strcmp(abrir->d_name, ".") != 0) && (strcmp(abrir->d_name, "..") != 0))
             {
                 string p = path;
-                p.append("/");
+                p.append("\\");
                 p.append(abrir->d_name);
                 stat(p.c_str(), &status);
                 if (S_ISDIR(status.st_mode)) // Diretoria
@@ -198,7 +198,8 @@ string SistemaFicheiros::DataFicheiro(const string& ficheiro)
     {
         resultado = ": Data de criacao do ficheiro <";
         resultado.append(ficheiro).append(">");
-        cout << Data->tm_mday << "/" << Data->tm_mon << "/" << Data->tm_year + 1900;
+               // years since 1900         // months since January - [0, 11]
+        cout << Data->tm_year + 1900 << "|" << Data->tm_mon + 1 << "|" << Data->tm_mday;
         return resultado;
     }
     else
@@ -213,6 +214,21 @@ void SistemaFicheiros::PesquisarAllDirectorias(list<string>& lres, const string&
 void SistemaFicheiros::PesquisarAllFicheiros(list<string>& lres, const string& file)
 {
     this->Raiz->PesquisarAllFicheiros(lres, file);
+}
+
+bool SistemaFicheiros::VerificarExistenciaFicheiro(const string& NFich)
+{
+    if (FILE* fich = fopen(NFich.c_str(), "r")) 
+    {
+        fclose(fich);
+        return true;
+    }
+    else 
+    {
+        cout << "ERRO!" << endl << "O ficheiro com o nome " << NFich << " nao foi encontrado" << endl;
+        system("pause");
+        return false;
+    }
 }
 
 void SistemaFicheiros::RenomearFicheiros(const string& fich_old, const string& fich_new)

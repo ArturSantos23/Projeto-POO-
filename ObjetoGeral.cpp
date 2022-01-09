@@ -29,3 +29,10 @@ void ObjetoGeral::FechaElementoXML(ofstream& Ficheiro, int Espacos, string Eleme
     AddTabulacoesXML(Ficheiro, Espacos);
     Ficheiro << "</" << Elemento << ">\n";
 }
+
+tm* ObjetoGeral::GetData(const string& NFich)
+{
+    stat(NFich.c_str(), &attrib_file);
+    DataCriacao = gmtime(&(attrib_file.st_mtime));
+    return DataCriacao;
+}

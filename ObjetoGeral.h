@@ -5,6 +5,7 @@ class Diretoria;
 class ObjetoGeral
 {
     struct tm* DataCriacao;
+    struct stat attrib_file;
     string Nome;
     string Path;
 public:
@@ -14,7 +15,7 @@ public:
     void AddTabulacoesXML(ofstream& Ficheiro, int Espacos);
     void EscreveElementoXML(ofstream& Ficheiro, int Espacos, string Elemento);
     void FechaElementoXML(ofstream& Ficheiro, int Espacos, string Elemento);
-    tm* GetData() { return DataCriacao; };
+    tm* GetData(const string& NFich);
     void AtualizaPath(const string& NovoPath) { Path = NovoPath; };
     void Renomear(const string& NomeNovo) { Nome = NomeNovo; };
     virtual ~ObjetoGeral();

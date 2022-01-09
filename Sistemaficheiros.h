@@ -28,6 +28,7 @@ class SistemaFicheiros
         string DataFicheiro(const string& ficheiro);                                                        //alínea 15
         void PesquisarAllDirectorias(list<string>& lres, const string& dir);                                //alínea 17
         void PesquisarAllFicheiros(list<string>& lres, const string& file);                                 //alínea 18
+        bool VerificarExistenciaFicheiro(const string& NFich);
         void RenomearFicheiros(const string& fich_old, const string& fich_new);                             //alínea 19
         bool FicheirosDuplicados();                                                                         //alínea 20
         bool CopyBatch(const string& padrao, const string& DirOrigem, const string& DirDestino);            //alínea 21

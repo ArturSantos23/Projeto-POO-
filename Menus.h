@@ -11,6 +11,7 @@ public:
     static int MenuRemover();
     static string RemoverDiretoria();
     static int MenuTree();
+    static int MenuRenomear();
     static void Select(SistemaFicheiros* P);
 };
 

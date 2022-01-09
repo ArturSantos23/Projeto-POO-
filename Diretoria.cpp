@@ -40,7 +40,6 @@ void Diretoria::Memoria(int* MemoriaTotal)
         (*it)->Memoria(MemoriaTotal);
 }
 
-//Nao se tem em conta o que existe dentro de outras diretorias, caso existam
 void Diretoria::DirMaisElementos(int* NumElementos, string* DirPath, string* DirName)
 {
     if (*NumElementos < this->GetNumElem())

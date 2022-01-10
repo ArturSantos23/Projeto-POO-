@@ -168,465 +168,207 @@ void Menus::Select(SistemaFicheiros* P)
         {
             do
             {
-            case 1:
-                if (!P->LoadRoot(current_dir))  //faz load da directoria onde o programa se encontra
-                {
-                    cout << endl << "Nao foi possivel carregar a diretoria!" << endl;
-                    cout << endl << "Tente novamente por favor." << endl;
-                    system("pause");
-                }
-                else
-                {
-                    cout << endl << "Diretoria carregada com exito!" << endl;
-                    cout << endl << "Foi carregada a seguinte diretoria: " << current_dir << endl << endl;
-                    aux_loaded = 1;
-                    system("pause");
-                }
-                break;
-
-            case 2:
-                if (aux_loaded == 0)
-                {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
-                    system("pause");
-                }
-                else
-                {
-                    cout << endl << "Numero de ficheiros guardados em memoria: " << P->ContarFicheiros() << endl;
-                    system("pause");
-                }
-                break;
-
-            case 3:
-                if (aux_loaded == 0)
-                {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
-                    system("pause");
-                }
-                else
-                {
-                    cout << endl << "Numero de diretorias guardadas em memoria: " << P->ContarDirectorias() << endl;
-                    system("pause");
-                }
-                break;
-
-            case 4:
-                if (aux_loaded == 0)
-                {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
-                    system("pause");
-                }
-                else
-                {
-                    cout << endl << "Estao alocados " << P->Memoria() << " bytes na memoria!" << endl;
-                    system("pause");
-                }
-                break;
-
-            case 5:
-                if (aux_loaded == 0)
-                {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
-                    system("pause");
-                }
-                else
-                {
-                    cout << endl << "Diretoria com mais elementos: " << P->DiretoriaMaisElementos() << endl;
-                    system("pause");
-                }
-                break;
-
-            case 6:
-                if (aux_loaded == 0)
-                {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
-                    system("pause");
-                }
-                else
-                {
-                    cout << endl << "Diretoria com menos elementos: " << P->DiretoriaMenosElementos() << endl;
-                    system("pause");
-                }
-                break;
-
-            case 7:
-                if (aux_loaded == 0)
-                {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
-                    system("pause");
-                }
-                else
-                {
-                    cout << endl << "Ficheiro que ocupa mais espaco:" << P->FicheiroMaior() << endl;
-                    system("pause");
-                }
-                break;
-
-            case 8:
-                if (aux_loaded == 0)
-                {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
-                    system("pause");
-                }
-                else
-                {
-                    cout << endl << "Diretoria que ocupa mais espaco: " << P->DiretoriaMaisEspaco() << endl;
-                    system("pause");
-                }
-                break;
-
-            case 9:
-                if (aux_loaded == 0)
-                {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
-                    system("pause");
-                }
-                else
-                {
-                    OpAux = MenuSearch();
-                    if (OpAux == 0)
-                    {
-                        break;
-                    }
-                    Str = NomeSearch(OpAux);
-                    cout << "Resultado da procura: " << P->Search(Str, OpAux) << endl;
-                    system("pause");
-                }
-                break;
-
-            case 10:
-                if (aux_loaded == 0)
-                {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
-                    system("pause");
-                }
-                else
-                {
-                    OpAux = MenuRemover();
-                    if (OpAux == 2)
-                    {
-                        del_dir = RemoverDiretoria();
-                        P->RemoverAll(del_dir, "DIR");
-                        P->LoadRoot(current_dir);   //atualiza a diretoria em memoria
-                        system("pause");
-                    }
-                    else if(OpAux == 1)
-                    {
-                        del_allfich = RemoverFicheiros();
-                        if(P->RemoverAll(del_allfich, "Fich"))
-                            cout << endl << "Ficheiros eliminados com sucesso!" << endl;
-                        P->LoadRoot(current_dir);   //atualiza a diretoria em memoria
-                        system("pause");
-                    }
-                    else
-                        break;
-                }
-                break;
-
-            case 11:
-                if (aux_loaded == 0)
-                {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
-                    system("pause");
-                }
-                else
-                {
-                    cout << endl << "Qual o nome do ficheiro para o qual pretende guardar o conteudo em XML?" << endl;
-                    cin >> Str;
-                    P->Escrever_XML(Str);
-                    cout << endl << "Operacao concluida com sucesso!" << endl;
-                    system("pause");
-                }
-                break;
-
-            case 12:
-                //Ler_XML();
+        case 1:
+            if (!P->LoadRoot(current_dir))  //faz load da directoria onde o programa se encontra
+            {
+                cout << endl << "Nao foi possivel carregar a diretoria!" << endl;
+                cout << endl << "Tente novamente por favor." << endl;
                 system("pause");
-                break;
+            }
+            else
+            {
+                cout << endl << "Diretoria carregada com exito!" << endl;
+                cout << endl << "Foi carregada a seguinte diretoria: " << current_dir << endl << endl;
+                aux_loaded = 1;
+                system("pause");
+            }
+            break;
 
-            case 13:
-                if (aux_loaded == 0)
+        case 2:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                cout << endl << "Numero de ficheiros guardados em memoria: " << P->ContarFicheiros() << endl;
+                system("pause");
+            }
+            break;
+
+        case 3:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                cout << endl << "Numero de diretorias guardadas em memoria: " << P->ContarDirectorias() << endl;
+                system("pause");
+            }
+            break;
+
+        case 4:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                cout << endl << "Estao alocados " << P->Memoria() << " bytes na memoria!" << endl;
+                system("pause");
+            }
+            break;
+
+        case 5:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                cout << endl << "Diretoria com mais elementos: " << P->DiretoriaMaisElementos() << endl;
+                system("pause");
+            }
+            break;
+
+        case 6:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                cout << endl << "Diretoria com menos elementos: " << P->DiretoriaMenosElementos() << endl;
+                system("pause");
+            }
+            break;
+
+        case 7:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                cout << endl << "Ficheiro que ocupa mais espaco:" << P->FicheiroMaior() << endl;
+                system("pause");
+            }
+            break;
+
+        case 8:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                cout << endl << "Diretoria que ocupa mais espaco: " << P->DiretoriaMaisEspaco() << endl;
+                system("pause");
+            }
+            break;
+
+        case 9:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                OpAux = MenuSearch();
+                if (OpAux == 0)
                 {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                    break;
+                }
+                Str = NomeSearch(OpAux);
+                cout << "Resultado da procura: " << P->Search(Str, OpAux) << endl;
+                system("pause");
+            }
+            break;
+
+        case 10:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                OpAux = MenuRemover();
+                if (OpAux == 2)
+                {
+                    del_dir = RemoverDiretoria();
+                    P->RemoverAll(del_dir, "DIR");
+                    P->LoadRoot(current_dir);   //atualiza a diretoria em memoria
+                    system("pause");
+                }
+                else if (OpAux == 1)
+                {
+                    del_allfich = RemoverFicheiros();
+                    if (P->RemoverAll(del_allfich, "Fich"))
+                        cout << endl << "Ficheiros eliminados com sucesso!" << endl;
+                    P->LoadRoot(current_dir);   //atualiza a diretoria em memoria
                     system("pause");
                 }
                 else
+                    break;
+            }
+            break;
+
+        case 11:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                cout << endl << "Qual o nome do ficheiro para o qual pretende guardar o conteudo em XML?" << endl;
+                cin >> Str;
+                P->Escrever_XML(Str);
+                cout << endl << "Operacao concluida com sucesso!" << endl;
+                system("pause");
+            }
+            break;
+
+        case 12:
+            //Ler_XML();
+            system("pause");
+            break;
+
+        case 13:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                system("cls");
+                cout << endl << "Qual o nome do ficheiro que pretende mover?" << endl;
+                cin >> old_filename;
+                cin.ignore();
+                if (P->VerificarExistenciaFicheiro(old_filename))   //Verifica se o ficheiro especificado pelo utilizador existe na diretoria carregada em memória ("current_dir" no caso)
                 {
-                    system("cls");
-                    cout << endl << "Qual o nome do ficheiro que pretende mover?" << endl;
-                    cin >> old_filename;
-                    cin.ignore();
-                    if (P->VerificarExistenciaFicheiro(old_filename))   //Verifica se o ficheiro especificado pelo utilizador existe na diretoria carregada em memória ("current_dir" no caso)
+                    cout << endl << "A mover o ficheiro: <" << old_filename << "> da diretoria: " << current_dir << endl;
+                    cout << endl << "Qual o caminho da diretoria para a qual pretende mover?" << endl;
+                    cin >> new_dirname;
+                    if (P->VerificarExistenciaDiretoria(new_dirname))        //Verificar se existe a diretoria especificada pelo utilizador
                     {
-                        cout << endl << "A mover o ficheiro: <" << old_filename << "> da diretoria: " << current_dir << endl;
-                        cout << endl << "Qual o caminho da diretoria para a qual pretende mover?" << endl;
-                        cin >> new_dirname;
-                        if (P->VerificarExistenciaDiretoria(new_dirname))        //Verificar se existe a diretoria especificada pelo utilizador
+                        cout << endl << "Deseja fazer a seguinte operacao? [Sim/Nao] :" << endl << "Mover o ficheiro <" << old_filename << "> da diretoria " << current_dir << "para a diretoria " << new_dirname << endl;
+                        cin >> confirmar;
+                        if (confirmar == "s" || confirmar == "S" || confirmar == "sim" || confirmar == "Sim" || confirmar == "SIM" || confirmar == "y" || confirmar == "Y" || confirmar == "yes" || confirmar == "Yes" || confirmar == "YES")
                         {
-                            cout << "Deseja fazer a seguinte operacao? [Sim/Nao] :" << endl << "Mover o ficheiro <" << old_filename << "> da diretoria " << current_dir << "para a diretoria " << new_dirname << endl;
-                            cin >> confirmar;
-                            if (confirmar == "s" || confirmar == "S" || confirmar == "sim" || confirmar == "Sim" || confirmar == "SIM" || confirmar == "y" || confirmar == "Y" || confirmar == "yes" || confirmar == "Yes" || confirmar == "YES")
+                            if (P->MoveFicheiro(old_filename, current_dir, new_dirname))   //move o ficheiro indicado pelo utilizar da diretoria "old_dirname" para a diretoria "new_dirname"
                             {
-                                if (P->MoveFicheiro(old_filename, current_dir, new_dirname))   //move o ficheiro indicado pelo utilizar da diretoria "old_dirname" para a diretoria "new_dirname"
-                                {
-                                    cout << endl << "Operacao concluida com sucesso" << endl << endl;
-                                    cout << endl << "Mostrar a tree? [Sim/Nao] :" << endl;  //(extra) Mostra a tree para verificar mudanças
-                                    cin >> confirmar;
-                                    if (confirmar == "s" || confirmar == "S" || confirmar == "sim" || confirmar == "Sim" || confirmar == "SIM" || confirmar == "y" || confirmar == "Y" || confirmar == "yes" || confirmar == "Yes" || confirmar == "YES")
-                                    {
-                                        cout << endl << endl;
-                                        system("tree /f");
-                                    }
-                                }
-                                system("pause");
-                            }
-                            else
-                            {
-                                cout << "Operacao cancelada" << endl << endl << "A sair......." << endl;
-                                system("pause");
-                                break;
-                            }  
-                        }
-                        P->LoadRoot(current_dir);   //atualiza a diretoria em memoria
-                    }
-                    else if(!P->VerificarExistenciaFicheiro(old_filename))  //Caso o ficheiro especificado pelo utilizador não exista na diretoria carregada em memória ("current_dir" no caso)
-                    {
-                        cout << endl << "O ficheiro que esta a mover nao se encontra na mesma diretoria do programa" << endl;
-                        cout << "Por favor indique o caminho da diretoria do ficheiro que pretende mover:" << endl; //O utilizador tem de especificar para que diretoria pretende mover o ficheiro
-                        cin >> old_dirname;
-                        if (P->VerificarExistenciaDiretoria(old_dirname))   //Verificar se existe a diretoria especificada pelo utilizador
-                        {
-                            cout << endl << "A mover o ficheiro: <" << old_filename << "> da diretoria: " << old_dirname << endl;
-                            cout << endl << "Qual o caminho da diretoria para a qual pretende mover?" << endl;
-                            cin >> new_dirname;
-                            if (P->VerificarExistenciaDiretoria(new_dirname))   //Verificar se existe a diretoria especificada pelo utilizador
-                            {
-                                cout << endl << "Deseja fazer a seguinte operacao? [Sim/Nao] :" << endl << "Mover o ficheiro <" << old_filename << "> da diretoria " << old_dirname << "para a diretoria " << new_dirname << endl;
-                                cin >> confirmar;
-                                if (confirmar == "s" || confirmar == "S" || confirmar == "sim" || confirmar == "Sim" || confirmar == "SIM" || confirmar == "y" || confirmar == "Y" || confirmar == "yes" || confirmar == "Yes" || confirmar == "YES")
-                                {
-                                    if (P->MoveFicheiro(old_filename, old_dirname, new_dirname))   //move o ficheiro indicado pelo utilizador da diretoria "old_dirname" para a diretoria "new_dirname"
-                                    {
-                                        cout << endl << "Operacao concluida com sucesso" << endl << endl;
-                                        cout << endl << "Mostrar a tree? [Sim/Nao] :" << endl;  //(extra) Mostra a tree para verificar mudanças
-                                        cin >> confirmar;
-                                        if (confirmar == "s" || confirmar == "S" || confirmar == "sim" || confirmar == "Sim" || confirmar == "SIM" || confirmar == "y" || confirmar == "Y" || confirmar == "yes" || confirmar == "Yes" || confirmar == "YES")
-                                        {
-                                            cout << endl << endl;
-                                            system("tree /f");
-                                        }
-                                    }
-                                    system("pause");
-                                }
-                                else
-                                {
-                                    cout << "Operacao cancelada" << endl << endl << "A sair......." << endl;
-                                    system("pause");
-                                    break;
-                                }
-                            }
-                        }
-                        P->LoadRoot(current_dir);   //atualiza a diretoria em memoria
-                    }
-                }
-                break;
-
-            case 14:
-                if (aux_loaded == 0)
-                {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
-                    system("pause");
-                }
-                else
-                {
-                    system("cls");
-                    cout << endl << "Indique o caminho da diretoria que pretende mover" << endl;
-                    cin >> old_dirname;
-                    cin.ignore();
-                    if (P->VerificarExistenciaDiretoria(old_dirname))   //Verificar se existe a diretoria especificada pelo utilizador
-                    {
-                        cout << endl << "A mover a diretoria: " << old_dirname << endl;
-                        cout << endl << "Indique o novo caminho para onde pretende mover a diretoria" << endl;
-                        cin >> new_dirname;
-                        if (P->VerificarExistenciaDiretoria(new_dirname))   //Verificar se existe a diretoria especificada pelo utilizador
-                        {
-                            cout << endl << "Deseja fazer a seguinte operacao? [Sim/Nao] :" << endl << "Mover a diretoria " << old_dirname << " para a diretoria " << new_dirname << endl;
-                            cin >> confirmar;
-                            if (confirmar == "s" || confirmar == "S" || confirmar == "sim" || confirmar == "Sim" || confirmar == "SIM" || confirmar == "y" || confirmar == "Y" || confirmar == "yes" || confirmar == "Yes" || confirmar == "YES")
-                            {
-                                if (P->MoverDirectoria(old_dirname, new_dirname))   //Move a diretoria indicada pelo utilizador "old_dirname" para uma outra diretoria "new_dirname"
-                                {
-                                    cout << endl << "Operacao concluida com sucesso" << endl << endl;
-                                    cout << endl << "Mostrar a tree? [Sim/Nao] :" << endl;  //(extra) Mostra a tree para verificar mudanças
-                                    cin >> confirmar;
-                                    if (confirmar == "s" || confirmar == "S" || confirmar == "sim" || confirmar == "Sim" || confirmar == "SIM" || confirmar == "y" || confirmar == "Y" || confirmar == "yes" || confirmar == "Yes" || confirmar == "YES")
-                                    {
-                                        cout << endl << endl;
-                                        system("tree /f");
-                                    }
-                                }
-                                system("pause");
-                            }
-                            else
-                            {
-                                cout << "Operacao cancelada" << endl << endl << "A sair......." << endl;
-                                system("pause");
-                                break;
-                            }
-                        }
-                        P->LoadRoot(current_dir);   //atualiza a diretoria em memoria
-                    }
-                }
-                break;
-
-            case 15:
-                if (aux_loaded == 0)
-                {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
-                    system("pause");
-                }
-                else
-                {
-                    cout << endl << "Qual o nome do ficheiro do qual pretende saber a data?" << endl;
-                    cin >> StrAux;
-                    cout << P->DataFicheiro(StrAux) << endl;
-                    system("pause");
-                }
-                break;
-
-            case 16:
-                if (aux_loaded == 0)
-                {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
-                    system("pause");
-                }
-                else
-                {
-                    OpAux = MenuTree();
-                    if (OpAux == 1)
-                    {
-                        P->Tree();
-                        system("pause");
-                    }
-                    else if (OpAux == 1)
-                    { 
-                        system("tree /f /a > tree.txt");    //guarda a tree do path atual para um ficheiro (tree.txt)
-                        cout << endl << "Tree guardada no ficheiro: <tree.txt>" << endl << endl;
-                        system("pause");
-                    }
-                    else
-                        break;
-                }
-                break;
-
-            case 17:
-                if (aux_loaded == 0)
-                {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
-                    system("pause");
-                }
-                else
-                {
-                    cout << endl << "Qual o nome da(s) diretoria(s) a pesquisar?" << endl;
-                    cin >> Str;
-                    P->PesquisarAllDirectorias(LResDir, Str);
-                    cout << "Resultados obtidos:" << endl;
-                    for (list<string>::iterator it = LResDir.begin(); it != LResDir.end(); ++it)
-                        cout << (*it) << endl;
-                    LResDir.clear();
-                    system("pause");
-                }
-                break;
-
-            case 18:
-                if (aux_loaded == 0)
-                {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
-                    system("pause");
-                }
-                else
-                {
-                    cout << endl << "Qual o nome do(s) ficheiro(s) a pesquisar?" << endl;
-                    cin >> Str;
-                    P->PesquisarAllFicheiros(LResFich, Str);
-                    cout << "Resultados obtidos:" << endl;
-                    for (list<string>::iterator it = LResFich.begin(); it != LResFich.end(); ++it)
-                        cout << (*it) << endl;
-                    LResFich.clear();
-                    system("pause");
-                }
-                break;
-
-            case 19:
-                if (aux_loaded == 0)
-                {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
-                    system("pause");
-                }
-                else
-                {
-                    cout << endl << "Qual o nome do(s) ficheiro(s) a renomear?" << endl;
-                    cin.ignore();
-                    cin >> old_filename;
-                    if (P->VerificarExistenciaFicheiro(old_filename))
-                    {
-                        cout << "Qual o novo nome a inserir?" << endl;
-                        cin >> new_filename;
-                        P->RenomearFicheiros(old_filename, new_filename);   //renomeia em "memória" (para efeitos de pesquisa através do uso das listas)
-                        rename(old_filename.c_str(), new_filename.c_str()); //renomeia o ficheiro "fisicamente"
-                        P->LoadRoot(current_dir);
-                        system("pause");
-                    }
-                    else
-                    {
-                        cout << endl << "[ERRO!!]: Nao foi possivel renomear o ficheiro <" << old_filename << ">. O ficheiro nao existe ou pertence a outra diretoria." << endl;
-                        cout << endl << "Tente novamente por favor." << endl;
-                        system("pause");
-                        break;
-                    }
-                }
-                break;
-
-            case 20:
-                if (aux_loaded == 0)
-                {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
-                    system("pause");
-                }
-                else
-                {
-                    if (P->FicheirosDuplicados())
-                        cout << endl << "Existem ficheiros duplicados!" << endl;
-                    else
-                        cout << endl << "Nao existem ficheiros duplicados!" << endl;
-                    system("pause");
-                }
-                break;
-
-            case 21:
-                if (aux_loaded == 0)
-                {
-                    cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
-                    system("pause");
-                }
-                else
-                {
-                    system("cls");
-                    cout << endl << "Indique uma diretoria a copiar" << endl;
-                    cin >> old_dirname;
-                    cin.ignore();
-                    if (P->VerificarExistenciaDiretoria(old_dirname))   //Verificar se existe a diretoria especificada pelo utilizador
-                    {
-                        cout << endl << "A copiar a diretoria: " << old_dirname << endl;
-                        cout << endl << "Indique o novo caminho para onde pretende copiar a diretoria" << endl;
-                        cin >> new_dirname;
-                        if (P->VerificarExistenciaDiretoria(new_dirname))   //Verificar se existe a diretoria especificada pelo utilizador
-                        {
-                            cout << endl << "Deseja fazer a seguinte operacao? [Sim/Nao] :" << endl << "Copiar todos os ficheiros (e respetiva estrutura de sub-directorias) da diretoria " << old_dirname << " para a diretoria " << new_dirname << endl;
-                            cin >> confirmar;
-                            if (confirmar == "s" || confirmar == "S" || confirmar == "sim" || confirmar == "Sim" || confirmar == "SIM" || confirmar == "y" || confirmar == "Y" || confirmar == "yes" || confirmar == "Yes" || confirmar == "YES")
-                            {
-                                P->CopyBatch(".", old_dirname, new_dirname);   //Copia todos os ficheiros(e respetiva estrutura de sub - directorias) da diretoria "old_dirname" para a diretoria "new_dirname"
                                 cout << endl << "Operacao concluida com sucesso" << endl << endl;
                                 cout << endl << "Mostrar a tree? [Sim/Nao] :" << endl;  //(extra) Mostra a tree para verificar mudanças
                                 cin >> confirmar;
@@ -635,6 +377,45 @@ void Menus::Select(SistemaFicheiros* P)
                                     cout << endl << endl;
                                     system("tree /f");
                                 }
+                            }
+                            system("pause");
+                        }
+                        else
+                        {
+                            cout << "Operacao cancelada" << endl << endl << "A sair......." << endl;
+                            system("pause");
+                            break;
+                        }
+                    }
+                    P->LoadRoot(current_dir);   //atualiza a diretoria em memoria
+                }
+                else if (!P->VerificarExistenciaFicheiro(old_filename))  //Caso o ficheiro especificado pelo utilizador não exista na diretoria carregada em memória ("current_dir" no caso)
+                {
+                    cout << endl << "O ficheiro que esta a mover nao se encontra na mesma diretoria do programa" << endl;
+                    cout << "Por favor indique o caminho da diretoria do ficheiro que pretende mover:" << endl; //O utilizador tem de especificar para que diretoria pretende mover o ficheiro
+                    cin >> old_dirname;
+                    if (P->VerificarExistenciaDiretoria(old_dirname))   //Verificar se existe a diretoria especificada pelo utilizador
+                    {
+                        cout << endl << "A mover o ficheiro: <" << old_filename << "> da diretoria: " << old_dirname << endl;
+                        cout << endl << "Qual o caminho da diretoria para a qual pretende mover?" << endl;
+                        cin >> new_dirname;
+                        if (P->VerificarExistenciaDiretoria(new_dirname))   //Verificar se existe a diretoria especificada pelo utilizador
+                        {
+                            cout << endl << "Deseja fazer a seguinte operacao? [Sim/Nao] :" << endl << "Mover o ficheiro <" << old_filename << "> da diretoria " << old_dirname << "para a diretoria " << new_dirname << endl;
+                            cin >> confirmar;
+                            if (confirmar == "s" || confirmar == "S" || confirmar == "sim" || confirmar == "Sim" || confirmar == "SIM" || confirmar == "y" || confirmar == "Y" || confirmar == "yes" || confirmar == "Yes" || confirmar == "YES")
+                            {
+                                if (P->MoveFicheiro(old_filename, old_dirname, new_dirname))   //move o ficheiro indicado pelo utilizador da diretoria "old_dirname" para a diretoria "new_dirname"
+                                {
+                                    cout << endl << "Operacao concluida com sucesso" << endl << endl;
+                                    cout << endl << "Mostrar a tree? [Sim/Nao] :" << endl;  //(extra) Mostra a tree para verificar mudanças
+                                    cin >> confirmar;
+                                    if (confirmar == "s" || confirmar == "S" || confirmar == "sim" || confirmar == "Sim" || confirmar == "SIM" || confirmar == "y" || confirmar == "Y" || confirmar == "yes" || confirmar == "Yes" || confirmar == "YES")
+                                    {
+                                        cout << endl << endl;
+                                        system("tree /f");
+                                    }
+                                }
                                 system("pause");
                             }
                             else
@@ -644,16 +425,235 @@ void Menus::Select(SistemaFicheiros* P)
                                 break;
                             }
                         }
-                        P->LoadRoot(current_dir);   //atualiza a diretoria em memoria
                     }
+                    P->LoadRoot(current_dir);   //atualiza a diretoria em memoria
                 }
-                break;
+            }
+            break;
+
+        case 14:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                system("cls");
+                cout << endl << "Indique o caminho da diretoria que pretende mover" << endl;
+                cin >> old_dirname;
+                cin.ignore();
+                if (P->VerificarExistenciaDiretoria(old_dirname))   //Verificar se existe a diretoria especificada pelo utilizador
+                {
+                    cout << endl << "A mover a diretoria: " << old_dirname << endl;
+                    cout << endl << "Indique o novo caminho para onde pretende mover a diretoria" << endl;
+                    cin >> new_dirname;
+                    if (P->VerificarExistenciaDiretoria(new_dirname))   //Verificar se existe a diretoria especificada pelo utilizador
+                    {
+                        cout << endl << "Deseja fazer a seguinte operacao? [Sim/Nao] :" << endl << "Mover a diretoria " << old_dirname << " para a diretoria " << new_dirname << endl;
+                        cin >> confirmar;
+                        if (confirmar == "s" || confirmar == "S" || confirmar == "sim" || confirmar == "Sim" || confirmar == "SIM" || confirmar == "y" || confirmar == "Y" || confirmar == "yes" || confirmar == "Yes" || confirmar == "YES")
+                        {
+                            if (P->MoverDirectoria(old_dirname, new_dirname))   //Move a diretoria indicada pelo utilizador "old_dirname" para uma outra diretoria "new_dirname"
+                            {
+                                cout << endl << "Operacao concluida com sucesso" << endl << endl;
+                                cout << endl << "Mostrar a tree? [Sim/Nao] :" << endl;  //(extra) Mostra a tree para verificar mudanças
+                                cin >> confirmar;
+                                if (confirmar == "s" || confirmar == "S" || confirmar == "sim" || confirmar == "Sim" || confirmar == "SIM" || confirmar == "y" || confirmar == "Y" || confirmar == "yes" || confirmar == "Yes" || confirmar == "YES")
+                                {
+                                    cout << endl << endl;
+                                    system("tree /f");
+                                }
+                            }
+                            system("pause");
+                        }
+                        else
+                        {
+                            cout << "Operacao cancelada" << endl << endl << "A sair......." << endl;
+                            system("pause");
+                            break;
+                        }
+                    }
+                    P->LoadRoot(current_dir);   //atualiza a diretoria em memoria
+                }
+            }
+            break;
+
+        case 15:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                cout << endl << "Qual o nome do ficheiro do qual pretende saber a data?" << endl;
+                cin >> StrAux;
+                cout << P->DataFicheiro(StrAux) << endl;
+                system("pause");
+            }
+            break;
+
+        case 16:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                OpAux = MenuTree();
+                if (OpAux == 1)
+                {
+                    P->Tree();
+                    system("pause");
+                }
+                else if (OpAux == 2)
+                {
+                    system("tree /f /a > tree.txt");    //guarda a tree do path atual para um ficheiro (tree.txt)
+                    cout << endl << "Tree guardada no ficheiro: <tree.txt>" << endl << endl;
+                    system("pause");
+                }
+                else
+                    break;
+            }
+            break;
+
+        case 17:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                cout << endl << "Qual o nome da(s) diretoria(s) a pesquisar?" << endl;
+                cin >> Str;
+                P->PesquisarAllDirectorias(LResDir, Str);
+                cout << "Resultados obtidos:" << endl;
+                for (list<string>::iterator it = LResDir.begin(); it != LResDir.end(); ++it)
+                    cout << (*it) << endl;
+                LResDir.clear();
+                system("pause");
+            }
+            break;
+
+        case 18:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                cout << endl << "Qual o nome do(s) ficheiro(s) a pesquisar?" << endl;
+                cin >> Str;
+                P->PesquisarAllFicheiros(LResFich, Str);
+                cout << "Resultados obtidos:" << endl;
+                for (list<string>::iterator it = LResFich.begin(); it != LResFich.end(); ++it)
+                    cout << (*it) << endl;
+                LResFich.clear();
+                system("pause");
+            }
+            break;
+
+        case 19:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                cout << endl << "Qual o nome do(s) ficheiro(s) a renomear?" << endl;
+                cin.ignore();
+                cin >> old_filename;
+                if (P->VerificarExistenciaFicheiro(old_filename))
+                {
+                    cout << "Qual o novo nome a inserir?" << endl;
+                    cin >> new_filename;
+                    P->RenomearFicheiros(old_filename, new_filename);   //renomeia em "memória" (para efeitos de pesquisa através do uso das listas)
+                    rename(old_filename.c_str(), new_filename.c_str()); //renomeia o ficheiro "fisicamente"
+                    P->LoadRoot(current_dir);
+                    system("pause");
+                }
+                else
+                {
+                    cout << endl << "[ERRO!!]: Nao foi possivel renomear o ficheiro <" << old_filename << ">. O ficheiro nao existe ou pertence a outra diretoria." << endl;
+                    cout << endl << "Tente novamente por favor." << endl;
+                    system("pause");
+                    break;
+                }
+            }
+            break;
+
+        case 20:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                if (P->FicheirosDuplicados())
+                    cout << endl << "Existem ficheiros duplicados!" << endl;
+                else
+                    cout << endl << "Nao existem ficheiros duplicados!" << endl;
+                system("pause");
+            }
+            break;
+
+        case 21:
+            if (aux_loaded == 0)
+            {
+                cout << endl << "ERRO! Não foi possível carregar a directoria" << endl;
+                system("pause");
+            }
+            else
+            {
+                system("cls");
+                cout << endl << "Indique uma diretoria a copiar" << endl;
+                cin >> old_dirname;
+                cin.ignore();
+                if (P->VerificarExistenciaDiretoria(old_dirname))   //Verificar se existe a diretoria especificada pelo utilizador
+                {
+                    cout << endl << "A copiar a diretoria: " << old_dirname << endl;
+                    cout << endl << "Indique o novo caminho para onde pretende copiar a diretoria" << endl;
+                    cin >> new_dirname;
+                    if (P->VerificarExistenciaDiretoria(new_dirname))   //Verificar se existe a diretoria especificada pelo utilizador
+                    {
+                        cout << endl << "Deseja fazer a seguinte operacao? [Sim/Nao] :" << endl << "Copiar todos os ficheiros (e respetiva estrutura de sub-directorias) da diretoria " << old_dirname << " para a diretoria " << new_dirname << endl;
+                        cin >> confirmar;
+                        if (confirmar == "s" || confirmar == "S" || confirmar == "sim" || confirmar == "Sim" || confirmar == "SIM" || confirmar == "y" || confirmar == "Y" || confirmar == "yes" || confirmar == "Yes" || confirmar == "YES")
+                        {
+                            P->CopyBatch(".", old_dirname, new_dirname);   //Copia todos os ficheiros(e respetiva estrutura de sub - directorias) da diretoria "old_dirname" para a diretoria "new_dirname"
+                            cout << endl << "Operacao concluida com sucesso" << endl << endl;
+                            cout << endl << "Mostrar a tree? [Sim/Nao] :" << endl;  //(extra) Mostra a tree para verificar mudanças
+                            cin >> confirmar;
+                            if (confirmar == "s" || confirmar == "S" || confirmar == "sim" || confirmar == "Sim" || confirmar == "SIM" || confirmar == "y" || confirmar == "Y" || confirmar == "yes" || confirmar == "Yes" || confirmar == "YES")
+                            {
+                                cout << endl << endl;
+                                system("tree /f");
+                            }
+                            system("pause");
+                        }
+                        else
+                        {
+                            cout << "Operacao cancelada" << endl << endl << "A sair......." << endl;
+                            system("pause");
+                            break;
+                        }
+                    }
+                    P->LoadRoot(current_dir);   //atualiza a diretoria em memoria
+                }
+            }
+            break;
 
             } while (aux_loaded == 0);
         }
         if (Opcao == 0)
             cout << endl << "Programa terminado com sucesso!" << endl;
-        else if(Opcao < 0 || Opcao > 21)
+        else if (Opcao < 0 || Opcao > 21)
         {
             cout << "Insira uma opcao valida" << endl;
             system("pause");

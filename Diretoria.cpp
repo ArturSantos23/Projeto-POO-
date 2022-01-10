@@ -131,11 +131,19 @@ void Diretoria::DiretoriaMaior(int* Tamanho, string* DirPath, string* NomeDir)
     }
 }
 
-void Diretoria::DiretoriaMaiorRoot(int* NumElementos, string* DirPath, string* DirName)
+void Diretoria::DiretoriaMaiorRoot(int* Tamanho, string* DirPath, string* NomeDir)
 {
-    for (list<Diretoria*>::iterator it = LDir.begin(); it != LDir.end(); ++it)
+    for (list<Ficheiro*>::iterator it = LFich.begin(); it != LFich.end(); ++it)
+        (*it)->GetTamanho();
+
+    for (list<Diretoria*>::iterator it2 = LDir.begin(); it2 != LDir.end(); ++it2)
     {
-        (*it)->DirMenosElementos(NumElementos, DirPath, DirName);
+        if ((*it2)->GetTamanhoDir() > *Tamanho)
+        {
+            *Tamanho = (*it2)->GetTamanhoDir();
+            *DirPath = (*it2)->GetPath();
+            *NomeDir = (*it2)->GetNome();
+        }
     }
 }
 
@@ -168,33 +176,47 @@ bool Diretoria::RemoveDiretoria(const string& DirName)
 {
     if (fs::remove_all(DirName.c_str())) //Apaga todo conteúdo da diretoria e de todas as suas subdiretorias, recursivamente, e no final apaga-se a si mesmo(diretoria "mãe")
     {
-        cout << "Diretoria <" << DirName << "> eliminada com sucesso!" << endl;
-        return true;
         if (LFich.size() != 0)
             this->LFich.erase(LFich.begin(), LFich.end());
         if (LDir.size() != 0)
             this->LDir.erase(LDir.begin(), LDir.end());
         delete this;
+        
+        cout << "Diretoria " << DirName << " eliminada com sucesso!" << endl;
+        return true;
     }
-    
     else
     {
-        cout << "Nao foi possivel eliminar a diretoria com o nome <" << DirName << ">" << endl;
+        cout << "Nao foi possivel eliminar a diretoria com o nome " << DirName << endl;
         return false;
     }
 }
 
-bool Diretoria::RemoveFicheiros()
+bool Diretoria::RemoveFicheiros(const string& Path)
 {
-    for (list<Diretoria*>::iterator it = LDir.begin(); it != LDir.end(); ++it)
-        (*it)->RemoveFicheiros();
-
-    if (this->LFich.size() != 0)
+    if (fs::exists(Path.c_str()) && fs::is_directory(Path.c_str()))
     {
-        this->LFich.erase(LFich.begin(), LFich.end());
+        fs::directory_iterator end;
+        for (fs::directory_iterator it(Path.c_str()); it != end; ++it)
+        {
+            if (fs::is_regular_file(it->status()) && (it->path().extension() == ".txt") || (it->path().extension() == ".pdf") || (it->path().extension() == ".docx"))      //adicionar com "ou" as extensões dos ficheiros a eliminar
+            {
+                for (list<Diretoria*>::iterator it = LDir.begin(); it != LDir.end(); ++it)
+                    (*it)->RemoveFicheiros(Path);
+
+                if (this->LFich.size() != 0)
+                    this->LFich.erase(LFich.begin(), LFich.end());
+                
+                fs::remove(it->path());
+            }
+        }
         return true;
     }
-    return false;
+    else
+    {
+        cout << endl << "[ERRO!!]: Nao foi possivel eliminar os ficheiros da diretoria com o nome " << Path << endl;
+        return false;
+    }
 }
 
 void Diretoria::EscreverXML(ofstream& File, int Espacos)
@@ -303,7 +325,9 @@ bool Diretoria::MoveFicheiro(const string& Fich, string DirAntiga, string DirNov
 
 bool Diretoria::MoverDirectoria(const string& DirOld, const string& DirNew)
 {
-    const auto copyOptions = fs::copy_options::update_existing | fs::copy_options::recursive;   //opções adicionais pa
+    const auto copyOptions = fs::copy_options::overwrite_existing | fs::copy_options::recursive;   //opções adicionais que controlam o comportamento da funçao copy()   
+                             //overwrite_existing -> Substitui o arquivo existente caso o mesmo exista na diretoria destino
+                            //recursive -> Copia recursivamente sub-diretorias e o seu conteudo
     if (rename(DirOld.c_str(), DirNew.c_str()))     //Atualiza a diretoria antiga para a diretoria nova
     {
         fs::copy(DirOld.c_str(), DirNew.c_str(), copyOptions);      //Copia todo o conteúdo presente na diretoria antiga para a diretoria nova, incluindo sub-diretorias (recursivamente)
@@ -385,7 +409,6 @@ bool Diretoria::VerificaNomes(list<string>& LNomes, string NomeVerificar)
         if (NomeVerificar.compare((*it)) == 0)
             return true;
     }
-
     return false;
 }
 
@@ -404,4 +427,24 @@ bool Diretoria::FicheirosDuplicados(list<string>& LNomes)
             return true;
         LNomes.push_back((*it2)->GetNome());
     }
+}
+
+bool Diretoria::CopyBatch(const string& padrao, const string& DirOrigem, const string& DirDestino)
+{
+    const auto copyOptions = fs::copy_options::overwrite_existing | fs::copy_options::recursive;   //opções adicionais que controlam o comportamento da funçao copy()   
+                             //overwrite_existing -> Substitui o arquivo existente caso o mesmo exista na diretoria destino
+                            //recursive -> Copia recursivamente sub-diretorias e o seu conteudo
+    if (rename(DirOrigem.c_str(), DirDestino.c_str()))     //Atualiza a diretoria antiga para a diretoria nova
+    {
+        fs::copy(DirOrigem.c_str(), DirDestino.c_str(), copyOptions);      //Copia todo o conteúdo presente na diretoria antiga para a diretoria nova, incluindo sub-diretorias (recursivamente)
+        return true;
+    }
+    else
+    {
+        cout << "[ERRO!!]" << endl;
+        cout << "Nao foi possivel localizar a diretoria: " << DirOrigem << endl;
+        cout << "Por favor insira uma diretoria valida." << endl;
+        return false;
+    }
+    return true;
 }

@@ -1,0 +1,84 @@
+, time_t &data, int &size              string CaminhoAbsolutoFilho = CaminhoAbsoluto + "\\"+files[i];
+              if (CaminhoAbsolutoFilho.find("\\.") != std::string::npos)
+                    continue;
+              if (Uteis::is_dir(CaminhoAbsolutoFilho.c_str(), data, size)) // Se é directoria !?
+              {
+                 Directoria *Dir = new Directoria(files[i], data, size);
+                 Dir->Processar(CaminhoAbsoluto);
+                 Filhos->push_back(Dir);
+              string CaminhoAbsolutoFilho = CaminhoAbsoluto + "\\"+files[i];
+              if (CaminhoAbsolutoFilho.find("\\.") != std::string::npos)
+                    continue;
+              if (Uteis::is_dir(CaminhoAbsolutoFilho.c_str(), data, size)) // Se é directoria !?
+              {
+                 Directoria *Dir = new Directoria(files[i], data, size);
+                 Dir->Processar(CaminhoAbsoluto);
+                 Filhos->push_back(Dir);
+
+              string CaminhoAbsolutoFilho = CaminhoAbsoluto + "\\"+files[i];
+              if (CaminhoAbsolutoFilho.find("\\.") != std::string::npos)
+                    continue;
+              if (Uteis::is_dir(CaminhoAbsolutoFilho.c_str(), data, size)) // Se é directoria !?
+              {
+                 Directoria *Dir = new Directoria(files[i], data, size);
+                 Dir->Processar(CaminhoAbsoluto);
+                 Filhos->push_back(Dir);
+              string CaminhoAbsolutoFilho = CaminhoAbsoluto + "\\"+files[i];
+              if (CaminhoAbsolutoFilho.find("\\.") != std::string::npos)
+                    continue;
+              if (Uteis::is_dir(CaminhoAbsolutoFilho.c_str(), data, size)) // Se é directoria !?
+              {
+                 Directoria *Dir = new Directoria(files[i], data, size);
+                 Dir->Processar(CaminhoAbsoluto);
+                 Filhos->push_back(Dir);
+
+              string CaminhoAbsolutoFilho = CaminhoAbsoluto + "\\"+files[i];
+              if (CaminhoAbsolutoFilho.find("\\.") != std::string::npos)
+                    continue;
+              if (Uteis::is_dir(CaminhoAbsolutoFilho.c_str(), data, size)) // Se é directoria !?
+              {
+                 Directoria *Dir = new Directoria(files[i], data, size);
+                 Dir->Processar(CaminhoAbsoluto);
+                 Filhos->push_back(Dir);
+              string CaminhoAbsolutoFilho = CaminhoAbsoluto + "\\"+files[i];
+              if (CaminhoAbsolutoFilho.find("\\.") != std::string::npos)
+                    continue;
+              if (Uteis::is_dir(CaminhoAbsolutoFilho.c_str(), data, size)) // Se é directoria !?
+              {
+                 Directoria *Dir = new Directoria(files[i], data, size);
+                 Dir->Processar(CaminhoAbsoluto);
+                 Filhos->push_back(Dir);
+
+              string CaminhoAbsolutoFilho = CaminhoAbsoluto + "\\"+files[i];
+              if (CaminhoAbsolutoFilho.find("\\.") != std::string::npos)
+                    continue;
+              if (Uteis::is_dir(CaminhoAbsolutoFilho.c_str(), data, size)) // Se é directoria !?
+              {
+                 Directoria *Dir = new Directoria(files[i], data, size);
+                 Dir->Processar(CaminhoAbsoluto);
+                 Filhos->push_back(Dir);
+              string CaminhoAbsolutoFilho = CaminhoAbsoluto + "\\"+files[i];
+              if (CaminhoAbsolutoFilho.find("\\.") != std::string::npos)
+                    continue;
+              if (Uteis::is_dir(CaminhoAbsolutoFilho.c_str(), data, size)) // Se é directoria !?
+              {
+                 Directoria *Dir = new Directoria(files[i], data, size);
+                 Dir->Processar(CaminhoAbsoluto);
+                 Filhos->push_back(Dir);
+              string CaminhoAbsolutoFilho = CaminhoAbsoluto + "\\"+files[i];
+              if (CaminhoAbsolutoFilho.find("\\.") != std::string::npos)
+                    continue;
+              if (Uteis::is_dir(CaminhoAbsolutoFilho.c_str(), data, size)) // Se é directoria !?
+              {
+                 Directoria *Dir = new Directoria(files[i], data, size);
+                 Dir->Processar(CaminhoAbsoluto);
+                 Filhos->push_back(Dir);
+
+              string CaminhoAbsolutoFilho = CaminhoAbsoluto + "\\"+files[i];
+              if (CaminhoAbsolutoFilho.find("\\.") != std::string::npos)
+                    continue;
+              if (Uteis::is_dir(CaminhoAbsolutoFilho.c_str(), data, size)) // Se é directoria !?
+              {
+                 Directoria *Dir = new Directoria(files[i], data, size);
+                 Dir->Processar(CaminhoAbsoluto);
+                 Filhos->push_back(Dir);

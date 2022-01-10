@@ -29,9 +29,8 @@ public:
     void SearchFicheiros(const string& FileName, string& Caminho);
     void Search(const string& DirName, string& Caminho);
     bool RemoveDiretoria(const string& DirName);
-    bool RemoveFicheiros();
+    bool RemoveFicheiros(const string& Path);
     void EscreverXML(ofstream& File, int Espacos);
-    Diretoria* GetPonteiroDirFicheiro(const string& NomeFicheiro, Ficheiro* F);
     bool MoveFicheiro(const string& Fich, string DirAntiga, string DirNova);
     bool MoverDirectoria(const string& DirOld, const string& DirNew);
     tm* DataFicheiro(const string& NomeFich);
@@ -42,5 +41,6 @@ public:
     void RenomearFicheirosRoot(const string& NFich, const string& NNovo);
     bool VerificaNomes(list<string>& LNomes, string NomeVerificar);
     bool FicheirosDuplicados(list<string>& LNomes);
+    bool CopyBatch(const string& padrao, const string& DirOrigem, const string& DirDestino);
     virtual ~Diretoria();
 };

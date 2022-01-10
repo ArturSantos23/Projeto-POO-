@@ -98,7 +98,7 @@ string SistemaFicheiros::DiretoriaMaisElementos()
     string DirName;
     int NumElementos = 0;
     this->Raiz->DirMaisElementosRoot(&NumElementos, &DirPath, &DirName);
-    cout << DirName << " e tem: " << NumElementos << " elementos! O seu caminho e: ";
+    cout << DirName << endl << "Tem: " << NumElementos << " elementos" << endl << "Caminho: ";
     return(DirPath);
 }
 
@@ -108,7 +108,7 @@ string SistemaFicheiros::DiretoriaMenosElementos()
     string DirName;
     int NumElementos = 10000;
     this->Raiz->DirMenosElementosRoot(&NumElementos, &DirPath, &DirName);
-    cout << DirName << " e tem: " << NumElementos << " elementos! O seu caminho : ";
+    cout << DirName << endl << "Tem: " << NumElementos << " elementos" << endl << "Caminho: ";
     return(DirPath);
 }
 
@@ -118,7 +118,7 @@ string SistemaFicheiros::FicheiroMaior()
     string FileName;
     int Tamanho = 0;
     this->Raiz->FichMaior(&Tamanho, &FilePath, &FileName);
-    cout << FileName << " e ocupa: " << Tamanho << " bytes! O seu caminho e: ";
+    cout << FileName << endl << "Ocupa: " << Tamanho << " bytes." << endl << "Caminho: ";
     return(FilePath);
 }
 
@@ -128,7 +128,7 @@ string SistemaFicheiros::DiretoriaMaisEspaco()
     string DirName;
     int Tamanho = 0;
     this->Raiz->DiretoriaMaiorRoot(&Tamanho, &DirPath, &DirName);
-    cout << DirName << " e ocupa: " << Tamanho << " bytes! O seu caminho e: ";
+    cout << DirName << endl << "Ocupa: " << Tamanho << " bytes." << endl << "Caminho: ";
     return(DirPath);
 }
 
@@ -152,7 +152,7 @@ bool SistemaFicheiros::RemoverAll(const string& s, const string& tipo)
     if (tipo.compare("DIR") == 0)
         Resultado = this->Raiz->RemoveDiretoria(s);
     else
-        Resultado = this->Raiz->RemoveFicheiros();
+        Resultado = this->Raiz->RemoveFicheiros(s);
 
     return Resultado;
 }
@@ -179,7 +179,34 @@ bool SistemaFicheiros::Ler_XML(const string& s)
     return false;
 }
 
-bool SistemaFicheiros::MoveFicheiro(const string& Fich, string DirAntiga, string DirNova)
+bool SistemaFicheiros::VerificarExistenciaFicheiro(const string& NFich)
+{
+    if (FILE* fich = fopen(NFich.c_str(), "r"))
+    {
+        fclose(fich);
+        return true;
+    }
+}
+
+bool SistemaFicheiros::VerificarExistenciaDiretoria(const string& NDir)
+{
+    struct stat buffer;
+
+    if (stat(NDir.c_str(), &buffer) != 0)
+    {
+        cout << endl << "[ERRO!!]: A diretoria com o nome " << NDir << " nao foi encontrada" << endl << endl;
+        cout << "Insira uma diretoria valida!" << endl << "Usage (Exemplo): C:\\Users\\user\\...\\...\\...\\...\\DirectoriaTeste" << endl << endl;
+        system("pause");
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+bool SistemaFicheiros::MoveFicheiro(const string& Fich, string DirAntiga, string DirNova)   //È necessário adicionar a DirAntiga caso o ficheiro não esteja presente na diretoria carregada em memória 
+                                                                                            //Se estiver na diretoria carregada em memória ("current_dir" no caso), segue com a funçao sem ter de especificar o path onde o fich se encontra
 {
     return this->Raiz->MoveFicheiro(Fich, DirAntiga, DirNova);
 }
@@ -203,6 +230,11 @@ string SistemaFicheiros::DataFicheiro(const string& ficheiro)
         return "Ficheiro nao encontrado!";
 }
 
+void SistemaFicheiros::Tree()
+{
+    system("tree /f");  //mostra a tree do path atual no ecrã
+}
+
 void SistemaFicheiros::PesquisarAllDirectorias(list<string>& lres, const string& dir)
 {
     this->Raiz->PesquisarAllDiretoriasRoot(lres, dir);
@@ -211,32 +243,6 @@ void SistemaFicheiros::PesquisarAllDirectorias(list<string>& lres, const string&
 void SistemaFicheiros::PesquisarAllFicheiros(list<string>& lres, const string& file)
 {
     this->Raiz->PesquisarAllFicheiros(lres, file);
-}
-
-bool SistemaFicheiros::VerificarExistenciaFicheiro(const string& NFich)
-{
-    if (FILE* fich = fopen(NFich.c_str(), "r")) 
-    {
-        fclose(fich);
-        return true;
-    }
-}
-
-bool SistemaFicheiros::VerificarExistenciaDiretoria(const string& NDir)
-{
-    struct stat buffer;
-
-    if (stat(NDir.c_str(), &buffer) != 0)
-    {
-        cout << endl << "[ERRO!!]: A diretoria com o nome " << NDir << " nao foi encontrada" << endl << endl;
-        cout << "Insira uma diretoria valida!" << endl << "Usage (Exemplo): C:\\Users\\user\\...\\...\\...\\...\\DirectoriaTeste" << endl << endl;
-        system("pause");
-        return false;
-    }
-    else 
-    {
-        return true;
-    }
 }
 
 void SistemaFicheiros::RenomearFicheiros(const string& fich_old, const string& fich_new)
@@ -255,5 +261,6 @@ bool SistemaFicheiros::FicheirosDuplicados()
 
 bool SistemaFicheiros::CopyBatch(const string& padrao, const string& DirOrigem, const string& DirDestino)
 {
+    this->Raiz->CopyBatch(padrao, DirOrigem.c_str(), DirDestino);
     return false;
 }

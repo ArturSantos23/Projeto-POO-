@@ -1,0 +1,82 @@
+cvxcv
+xcv
+xc
+vxc
+v
+xc
+vxc
+v
+xcv
+xc
+v
+xcv
+xc
+srftswerwerwe
+r
+wer
+we
+rwe
+r
+we
+
+    catch(bad_alloc	&ex)
+    {
+        cout << "thrown by new on allocation failure " << endl;
+    }
+    catch(exception &Ex)
+    {
+        cout << "Erro <" << Ex.what() << "> No Teste <"<<__FUNCTION__<<">" << endl;  return;
+    }
+    FimTeste(n_teste);
+
+    catch(bad_alloc	&ex)
+    {
+        cout << "thrown by new on allocation failure " << endl;
+    }
+    catch(exception &Ex)
+    {
+        cout << "Erro <" << Ex.what() << "> No Teste <"<<__FUNCTION__<<">" << endl;  return;
+    }
+    FimTeste(n_teste);
+
+    catch(bad_alloc	&ex)
+    {
+        cout << "thrown by new on allocation failure " << endl;
+    }
+    catch(exception &Ex)
+    {
+        cout << "Erro <" << Ex.what() << "> No Teste <"<<__FUNCTION__<<">" << endl;  return;
+    }
+    FimTeste(n_teste);
+
+    catch(bad_alloc	&ex)
+    {
+        cout << "thrown by new on allocation failure " << endl;
+    }
+    catch(exception &Ex)
+    {
+        cout << "Erro <" << Ex.what() << "> No Teste <"<<__FUNCTION__<<">" << endl;  return;
+    }
+    FimTeste(n_teste);
+
+    catch(bad_alloc	&ex)
+    {
+        cout << "thrown by new on allocation failure " << endl;
+    }
+    catch(exception &Ex)
+    {
+        cout << "Erro <" << Ex.what() << "> No Teste <"<<__FUNCTION__<<">" << endl;  return;
+    }
+    FimTeste(n_teste);
+
+    catch(bad_alloc	&ex)
+    {
+        cout << "thrown by new on allocation failure " << endl;
+    }
+    catch(exception &Ex)
+    {
+        cout << "Erro <" << Ex.what() << "> No Teste <"<<__FUNCTION__<<">" << endl;  return;
+    }
+    FimTeste(n_teste);
+rwe
+r

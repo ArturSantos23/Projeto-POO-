@@ -38,7 +38,7 @@ bool SistemaFicheiros::Load(const string& path, Diretoria* Dir)
     if (((fich = opendir(path.c_str())) != NULL))
     {
         struct tm* DataCriacao;
-        struct stat status;
+        struct stat attrib_file;
         struct dirent* abrir;
         while ((abrir = readdir(fich)))
         {
@@ -47,18 +47,18 @@ bool SistemaFicheiros::Load(const string& path, Diretoria* Dir)
                 string p = path;
                 p.append("\\");
                 p.append(abrir->d_name);
-                stat(p.c_str(), &status);
-                if (S_ISDIR(status.st_mode)) // Diretoria
+                stat(p.c_str(), &attrib_file);
+                if (S_ISDIR(attrib_file.st_mode)) // Diretoria
                 {
-                    DataCriacao = gmtime(&status.st_ctime);
+                    DataCriacao = gmtime(&attrib_file.st_ctime);
                     Diretoria* D = new Diretoria(DataCriacao, path, abrir->d_name);
                     Dir->AddDir(D);
                     Load(p, D);
                 }
-                else if (S_ISREG(status.st_mode)) //Ficheiro
+                else if (S_ISREG(attrib_file.st_mode)) //Ficheiro
                 {
-                    DataCriacao = gmtime(&status.st_ctime);
-                    Ficheiro* F = new Ficheiro(DataCriacao, status.st_size, path, abrir->d_name);
+                    DataCriacao = gmtime(&attrib_file.st_ctime);
+                    Ficheiro* F = new Ficheiro(DataCriacao, attrib_file.st_size, path, abrir->d_name);
                     Dir->AddFich(F);
                 }
             }
@@ -98,7 +98,7 @@ string SistemaFicheiros::DiretoriaMaisElementos()
     string DirName;
     int NumElementos = 0;
     this->Raiz->DirMaisElementosRoot(&NumElementos, &DirPath, &DirName);
-    cout << DirName << " e tem: " << NumElementos << " elementos! O seu caminho ?: ";
+    cout << DirName << " e tem: " << NumElementos << " elementos! O seu caminho e: ";
     return(DirPath);
 }
 
@@ -108,7 +108,7 @@ string SistemaFicheiros::DiretoriaMenosElementos()
     string DirName;
     int NumElementos = 10000;
     this->Raiz->DirMenosElementosRoot(&NumElementos, &DirPath, &DirName);
-    cout << DirName << " e tem: " << NumElementos << " elementos! O seu caminho ?: ";
+    cout << DirName << " e tem: " << NumElementos << " elementos! O seu caminho : ";
     return(DirPath);
 }
 
@@ -118,7 +118,7 @@ string SistemaFicheiros::FicheiroMaior()
     string FileName;
     int Tamanho = 0;
     this->Raiz->FichMaior(&Tamanho, &FilePath, &FileName);
-    cout << FileName << " e ocupa: " << Tamanho << " bytes! O seu caminho ?: ";
+    cout << FileName << " e ocupa: " << Tamanho << " bytes! O seu caminho e: ";
     return(FilePath);
 }
 
@@ -128,7 +128,7 @@ string SistemaFicheiros::DiretoriaMaisEspaco()
     string DirName;
     int Tamanho = 0;
     this->Raiz->DiretoriaMaiorRoot(&Tamanho, &DirPath, &DirName);
-    cout << DirName << " e ocupa: " << Tamanho << " bytes! O seu caminho ?: ";
+    cout << DirName << " e ocupa: " << Tamanho << " bytes! O seu caminho e: ";
     return(DirPath);
 }
 
@@ -150,9 +150,9 @@ bool SistemaFicheiros::RemoverAll(const string& s, const string& tipo)
     bool Resultado = false;
 
     if (tipo.compare("DIR") == 0)
-        Resultado = this->Raiz->RemoveDiretorias(s);
+        Resultado = this->Raiz->RemoveDiretoria(s);
     else
-        Resultado = this->Raiz->RemoveFicheirosTodos();
+        Resultado = this->Raiz->RemoveFicheiros();
 
     return Resultado;
 }
@@ -179,28 +179,25 @@ bool SistemaFicheiros::Ler_XML(const string& s)
     return false;
 }
 
-bool SistemaFicheiros::MoveFicheiro(const string& Fich, const string& DirNova)
+bool SistemaFicheiros::MoveFicheiro(const string& Fich, string DirAntiga, string DirNova)
 {
-    //return this->Raiz->MoveFicheiro(Fich, DirNova);
-    return false;
+    return this->Raiz->MoveFicheiro(Fich, DirAntiga, DirNova);
 }
 
 bool SistemaFicheiros::MoverDirectoria(const string& DirOld, const string& DirNew)
 {
-    return false;
+    return this->Raiz->MoverDirectoria(DirOld, DirNew);
 }
 
 string SistemaFicheiros::DataFicheiro(const string& ficheiro)
 {
-    tm* Data = this->Raiz->DataFicheiros(ficheiro);
+    tm* Data = this->Raiz->DataFicheiro(ficheiro);
     string resultado;
     if (Data != NULL)
     {
-        resultado = ": Data de criacao do ficheiro <";
-        resultado.append(ficheiro).append(">");
                // years since 1900         // months since January - [0, 11]
-        cout << Data->tm_year + 1900 << "|" << Data->tm_mon + 1 << "|" << Data->tm_mday;
-        return resultado;
+        cout << "Data de criacao do ficheiro <" << ficheiro << ">: " << Data->tm_year + 1900 << "|" << Data->tm_mon + 1 << "|" << Data->tm_mday;
+        return "";
     }
     else
         return "Ficheiro nao encontrado!";
@@ -223,18 +220,29 @@ bool SistemaFicheiros::VerificarExistenciaFicheiro(const string& NFich)
         fclose(fich);
         return true;
     }
-    else 
+}
+
+bool SistemaFicheiros::VerificarExistenciaDiretoria(const string& NDir)
+{
+    struct stat buffer;
+
+    if (stat(NDir.c_str(), &buffer) != 0)
     {
-        cout << "ERRO!" << endl << "O ficheiro com o nome " << NFich << " nao foi encontrado" << endl;
+        cout << endl << "[ERRO!!]: A diretoria com o nome " << NDir << " nao foi encontrada" << endl << endl;
+        cout << "Insira uma diretoria valida!" << endl << "Usage (Exemplo): C:\\Users\\user\\...\\...\\...\\...\\DirectoriaTeste" << endl << endl;
         system("pause");
         return false;
+    }
+    else 
+    {
+        return true;
     }
 }
 
 void SistemaFicheiros::RenomearFicheiros(const string& fich_old, const string& fich_new)
 {
     this->Raiz->RenomearFicheiros(fich_old, fich_new);
-    cout << "O(s) ficheiro(s) ja foi/foram renomeados" << endl;
+    cout << "O(s) ficheiro(s) com o nome <" << fich_old << "> foi/foram renomeado(s) para: <" << fich_new << ">" << endl;
 }
 
 bool SistemaFicheiros::FicheirosDuplicados()

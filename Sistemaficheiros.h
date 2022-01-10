@@ -23,13 +23,14 @@ class SistemaFicheiros
         bool RemoverAll(const string& s, const string& tipo);                                               //alínea 10
         void Escrever_XML(const string& s);                                                                 //alínea 11
         bool Ler_XML(const string& s);                                                                      //alínea 12
-        bool MoveFicheiro(const string& Fich, const string& DirNova);                                       //alínea 13
+        bool MoveFicheiro(const string& Fich, string DirAntiga, string DirNova);                            //alínea 13
         bool MoverDirectoria(const string& DirOld, const string& DirNew);                                   //alínea 14
         string DataFicheiro(const string& ficheiro);                                                        //alínea 15
         void PesquisarAllDirectorias(list<string>& lres, const string& dir);                                //alínea 17
         void PesquisarAllFicheiros(list<string>& lres, const string& file);                                 //alínea 18
-        bool VerificarExistenciaFicheiro(const string& NFich);
         void RenomearFicheiros(const string& fich_old, const string& fich_new);                             //alínea 19
+        bool VerificarExistenciaFicheiro(const string& NFich);                                              //aux alínea 19
+        bool VerificarExistenciaDiretoria(const string& NDir);
         bool FicheirosDuplicados();                                                                         //alínea 20
         bool CopyBatch(const string& padrao, const string& DirOrigem, const string& DirDestino);            //alínea 21
         virtual ~SistemaFicheiros();

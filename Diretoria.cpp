@@ -164,53 +164,34 @@ void Diretoria::Search(const string& DirName, string& Caminho)
         (*it)->Search(DirName, Caminho);
 }
 
-void Diretoria::RemoveFicheiros()
+bool Diretoria::RemoveDiretoria(const string& DirName)
 {
-    this->LFich.erase(LFich.begin(), LFich.end());
-}
-
-void Diretoria::RemoveSubDiretorias()
-{
-    for (list<Diretoria*>::iterator it = LDir.begin(); it != LDir.end(); it++)
-        (*it)->RemoveSubDiretorias();
-
-    if (LFich.size() != 0)
-        this->RemoveFicheiros();
-    if (LDir.size() != 0)
-        this->LDir.erase(LDir.begin(), LDir.end());
-    delete this;
-    return;
-}
-
-bool Diretoria::RemoveDiretorias(const string& DirName)
-{
-    if (this->GetNome().compare(DirName) == 0)
+    if (fs::remove_all(DirName.c_str())) //Apaga todo conteúdo da diretoria e de todas as suas subdiretorias, recursivamente, e no final apaga-se a si mesmo(diretoria "mãe")
     {
-        if (this->LDir.size() != 0)
-            this->RemoveSubDiretorias();
-        if (this->LFich.size() != 0)
-            this->RemoveFicheiros();
+        cout << "Diretoria <" << DirName << "> eliminada com sucesso!" << endl;
         return true;
+        if (LFich.size() != 0)
+            this->LFich.erase(LFich.begin(), LFich.end());
+        if (LDir.size() != 0)
+            this->LDir.erase(LDir.begin(), LDir.end());
+        delete this;
     }
-
-    for (list<Diretoria*>::iterator it = LDir.begin(); it != LDir.end(); ++it)
+    
+    else
     {
-        if ((*it)->RemoveDiretorias(DirName))
-        {
-            LDir.remove(*it);
-            delete* it;
-        }
+        cout << "Nao foi possivel eliminar a diretoria com o nome <" << DirName << ">" << endl;
+        return false;
     }
-    return false;
 }
 
-bool Diretoria::RemoveFicheirosTodos()
+bool Diretoria::RemoveFicheiros()
 {
     for (list<Diretoria*>::iterator it = LDir.begin(); it != LDir.end(); ++it)
-        (*it)->RemoveFicheirosTodos();
+        (*it)->RemoveFicheiros();
+
     if (this->LFich.size() != 0)
     {
-        this->RemoveFicheiros();
+        this->LFich.erase(LFich.begin(), LFich.end());
         return true;
     }
     return false;
@@ -250,18 +231,103 @@ void Diretoria::EscreverXML(ofstream& File, int Espacos)
     FechaElementoXML(File, Espacos, "Diretoria");
 }
 
-tm* Diretoria::DataFicheiros(const string& NomeFich)
+bool Diretoria::MoveFicheiro(const string& Fich, string DirAntiga, string DirNova)
+{
+    for (int i = 0; i < DirAntiga.size(); i++)
+    {
+        if (DirAntiga[i] == '\\')
+            DirAntiga[i] = '/';
+    }
+
+    for (int i = 0; i < DirNova.size(); i++)
+    {
+        if (DirNova[i] == '\\')
+            DirNova[i] = '/';
+    }
+
+    if (DirAntiga[DirAntiga.size() - 1] != '/')
+        DirAntiga.push_back('/');
+
+    DirAntiga = DirAntiga + Fich;
+
+    if (DirNova[DirNova.size() - 1] != '/')
+        DirNova.push_back('/');
+
+    DirNova = DirNova + Fich;
+    ifstream DirAntigaFich(DirAntiga.c_str(), ios::binary);
+
+    if (DirAntigaFich)
+    {
+        ifstream iDirNova(DirNova.c_str());
+        if (iDirNova)
+        {
+            cout << Fich << " O ficheiro que esta a mover ja existe na diretoria nova." << endl << endl << "A sair......." << endl;
+            system("pause");
+            iDirNova.close();
+            return false;
+        }
+        else
+        {
+            iDirNova.close();
+            ofstream DirNovaFich(DirNova.c_str(), ios::binary);
+            string line;
+            while (getline(DirAntigaFich, line))
+            {
+                DirNovaFich << line << endl;;
+            }
+            DirNovaFich.flush();
+            DirNovaFich.close();
+            DirAntigaFich.close();
+            int old_file = remove(DirAntiga.c_str());
+            if (old_file == 0)
+            {
+                return true;
+            }
+            else
+            {
+                cout << "[ERRO!!]: Nao foi possivel mover o ficheiro. Tente novamente por favor." << endl;
+                system("pause");
+                return false;
+            }
+        }
+        DirAntigaFich.close();
+    }
+    else
+    {
+        cout << "[ERRO!!]" << endl;
+        cout << "Nao foi possivel localizar o ficheiro: " << DirAntiga << endl;
+        cout << "Por favor insira uma diretoria valida." << endl;
+        return false;
+    }
+}
+
+bool Diretoria::MoverDirectoria(const string& DirOld, const string& DirNew)
+{
+    const auto copyOptions = fs::copy_options::update_existing | fs::copy_options::recursive;   //opções adicionais pa
+    if (rename(DirOld.c_str(), DirNew.c_str()))     //Atualiza a diretoria antiga para a diretoria nova
+    {
+        fs::copy(DirOld.c_str(), DirNew.c_str(), copyOptions);      //Copia todo o conteúdo presente na diretoria antiga para a diretoria nova, incluindo sub-diretorias (recursivamente)
+        fs::remove_all(DirOld.c_str());                             //Elimina todo o conteúdo presente na diretoria antiga, incluindo sub-diretorias (recursivamente)
+    }
+    else
+    {
+        cout << "[ERRO!!]" << endl;
+        cout << "Nao foi possivel localizar a diretoria: " << DirOld << endl;
+        cout << "Por favor insira uma diretoria valida." << endl;
+        return false;
+    }
+}
+
+tm* Diretoria::DataFicheiro(const string& NomeFich)
 {
     for (list<Ficheiro*>::iterator it = LFich.begin(); it != LFich.end(); ++it)
     {
         if ((*it)->GetNome().compare(NomeFich) == 0)
             return ((*it)->GetData(NomeFich));
     }
-
     for (list<Diretoria*>::iterator it2 = LDir.begin(); it2 != LDir.end(); ++it2)
-    {
-        (*it2)->DataFicheiros(NomeFich);
-    }
+        (*it2)->DataFicheiro(NomeFich);
+
     return NULL;
 }
 
@@ -288,7 +354,6 @@ void Diretoria::PesquisarAllFicheiros(list<string>& LPath, const string& NomeFic
         if ((*it)->GetNome().compare(NomeFicheiro) == 0)
             LPath.push_back((*it)->GetPath());
     }
-
     for (list<Diretoria*>::iterator it2 = LDir.begin(); it2 != LDir.end(); ++it2)
         (*it2)->PesquisarAllFicheiros(LPath, NomeFicheiro);
 }
@@ -300,7 +365,6 @@ void Diretoria::RenomearFicheiros(const string& NFich, const string& NNovo)
         if ((*it)->GetNome().compare(NFich) == 0)
             (*it)->Renomear(NNovo);
     }
-
     for (list<Diretoria*>::iterator it2 = LDir.begin(); it2 != LDir.end(); ++it2)
         (*it2)->RenomearFicheiros(NFich, NNovo);
 }

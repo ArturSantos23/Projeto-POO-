@@ -223,7 +223,7 @@ string SistemaFicheiros::DataFicheiro(const string& ficheiro)
 	if (Data != NULL)
 	{
 		// years since 1900         // months since January - [0, 11]
-		cout << "Data de criacao do ficheiro <" << ficheiro << ">: " << Data->tm_year + 1900 << "|" << Data->tm_mon + 1 << "|" << Data->tm_mday;
+		cout << "Data de modificacao do ficheiro <" << ficheiro << ">: " << Data->tm_year + 1900 << "|" << Data->tm_mon + 1 << "|" << Data->tm_mday;
 		return "";
 	}
 	else

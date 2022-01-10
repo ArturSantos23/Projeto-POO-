@@ -44,4 +44,3 @@ public:
     bool FicheirosDuplicados(list<string>& LNomes);
     virtual ~Diretoria();
 };
-

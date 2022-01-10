@@ -19,5 +19,4 @@ public:
     void AtualizaPath(const string& NovoPath) { Path = NovoPath; };
     void Renomear(const string& NomeNovo) { Nome = NomeNovo; };
     virtual ~ObjetoGeral();
-
 };

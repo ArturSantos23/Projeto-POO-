@@ -136,10 +136,10 @@ string SistemaFicheiros::Search(const string& s, int Tipo)
 {
     string Caminho = "Nao encontrado";
 
-    if (Tipo == 0)
+    if (Tipo == 1)
         this->Raiz->SearchFicheiros(s, Caminho);
 
-    if (Tipo == 1)
+    if (Tipo == 2)
         this->Raiz->Search(s, Caminho);
 
     return Caminho;

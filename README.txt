@@ -1,4 +1,4 @@
-# Projeto POO
+#Projeto POO
 #Programa desenvolvido no IDE Visual Studio 2022
 
 Este programa tem como objetivo a gestão de directorias e seus conteúdos (ficheiros e subdirectorias da diretoria onde o programa se encontra.)

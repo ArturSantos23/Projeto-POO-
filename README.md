@@ -50,7 +50,7 @@ Funcionalidades principais:
     0. Saír
 
 
-Documentação usada como auxília ao longo do desenvolvimento do Projeto:
+Documentação usada como auxílio ao longo do desenvolvimento do Projeto:
 
 - https://en.cppreference.com/w/cpp/filesystem
 

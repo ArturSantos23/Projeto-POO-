@@ -1,0 +1,32 @@
+|bin
+	|Debug
+	    |__#Projeto.exe
+|include
+    |__#Diretoria.h
+    |__#Ficheiro.h
+    |__#main.h
+    |__#ObjetoGeral.h
+    |__#SistemaFicheiros.h
+    |__#Uteis.h
+|obj
+	|Debug
+		|src
+		    |__#Diretoria.o
+		    |__#Ficheiro.o
+		    |__#ObjetoGeral.o
+		    |__#SistemaFicheiros.o
+		    |__#Uteis.o
+	    |__#main.o
+|src
+    |__#Diretoria.cpp
+    |__#Ficheiro.cpp
+    |__#ObjetoGeral.cpp
+    |__#SistemaFicheiros.cpp
+    |__#Uteis.cpp
+#main.cpp
+#Projeto.cbp
+#Projeto.depend
+#Projeto.layout
+#Teste.txt
+#Tree.txt
+#XML.txt

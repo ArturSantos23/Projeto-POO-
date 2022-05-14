@@ -431,8 +431,8 @@ bool Diretoria::FicheirosDuplicados(list<string>& LNomes)
 
 bool Diretoria::CopyBatch(const string& padrao, const string& DirOrigem, const string& DirDestino)
 {
-	const auto copyOptions = fs::copy_options::overwrite_existing | fs::copy_options::recursive;   //opções adicionais que controlam o comportamento da funçao copy()   
-							 //overwrite_existing -> Substitui o arquivo existente caso o mesmo exista na diretoria destino
+	const auto copyOptions = fs::copy_options::skip_existing | fs::copy_options::recursive;   //opções adicionais que controlam o comportamento da funçao copy()   
+							 //skip_existing -> Ignora o arquivo caso o mesmo exista na diretoria destino (com o mesmo nome)
 							//recursive -> Copia recursivamente sub-diretorias e o seu conteudo
 	if (rename(DirOrigem.c_str(), DirDestino.c_str()))     //Atualiza a diretoria antiga para a diretoria nova
 	{

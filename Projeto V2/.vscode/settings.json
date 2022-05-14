@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "srvfile.h": "c",
+        "sem_funcoes.h": "c"
+    }
+}

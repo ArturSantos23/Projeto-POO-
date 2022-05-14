@@ -1,0 +1,176 @@
+<SistemaFicheiros>
+
+<Diretoria>
+	<Nome>.</Nome>
+	<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto</Path>
+	<LDir>
+	<Diretoria>
+		<Nome>bin</Nome>
+		<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto</Path>
+		<LDir>
+		<Diretoria>
+			<Nome>Debug</Nome>
+			<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/bin</Path>
+			<LFich>
+				<Ficheiro>
+					<Nome>Projeto.exe</Nome>
+					<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/bin/Debug</Path>
+					<Tamanho>701404</Tamanho>
+				</Ficheiro>
+			</LFich>
+		</Diretoria>
+		</LDir>
+	</Diretoria>
+	<Diretoria>
+		<Nome>include</Nome>
+		<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto</Path>
+		<LFich>
+			<Ficheiro>
+				<Nome>Diretoria.h</Nome>
+				<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/include</Path>
+				<Tamanho>2593</Tamanho>
+			</Ficheiro>
+			<Ficheiro>
+				<Nome>Ficheiro.h</Nome>
+				<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/include</Path>
+				<Tamanho>520</Tamanho>
+			</Ficheiro>
+			<Ficheiro>
+				<Nome>main.h</Nome>
+				<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/include</Path>
+				<Tamanho>264</Tamanho>
+			</Ficheiro>
+			<Ficheiro>
+				<Nome>ObjetoGeral.h</Nome>
+				<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/include</Path>
+				<Tamanho>809</Tamanho>
+			</Ficheiro>
+			<Ficheiro>
+				<Nome>SistemaFicheiros.h</Nome>
+				<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/include</Path>
+				<Tamanho>1546</Tamanho>
+			</Ficheiro>
+			<Ficheiro>
+				<Nome>Uteis.h</Nome>
+				<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/include</Path>
+				<Tamanho>444</Tamanho>
+			</Ficheiro>
+		</LFich>
+	</Diretoria>
+	<Diretoria>
+		<Nome>obj</Nome>
+		<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto</Path>
+		<LDir>
+		<Diretoria>
+			<Nome>Debug</Nome>
+			<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/obj</Path>
+			<LDir>
+			<Diretoria>
+				<Nome>src</Nome>
+				<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/obj/Debug</Path>
+				<LFich>
+					<Ficheiro>
+						<Nome>Diretoria.o</Nome>
+						<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/obj/Debug/src</Path>
+						<Tamanho>327811</Tamanho>
+					</Ficheiro>
+					<Ficheiro>
+						<Nome>Ficheiro.o</Nome>
+						<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/obj/Debug/src</Path>
+						<Tamanho>71906</Tamanho>
+					</Ficheiro>
+					<Ficheiro>
+						<Nome>ObjetoGeral.o</Nome>
+						<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/obj/Debug/src</Path>
+						<Tamanho>59770</Tamanho>
+					</Ficheiro>
+					<Ficheiro>
+						<Nome>SistemaFicheiros.o</Nome>
+						<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/obj/Debug/src</Path>
+						<Tamanho>197842</Tamanho>
+					</Ficheiro>
+					<Ficheiro>
+						<Nome>Uteis.o</Nome>
+						<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/obj/Debug/src</Path>
+						<Tamanho>158010</Tamanho>
+					</Ficheiro>
+				</LFich>
+			</Diretoria>
+			</LDir>
+			<LFich>
+				<Ficheiro>
+					<Nome>main.o</Nome>
+					<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/obj/Debug</Path>
+					<Tamanho>24083</Tamanho>
+				</Ficheiro>
+			</LFich>
+		</Diretoria>
+		</LDir>
+	</Diretoria>
+	<Diretoria>
+		<Nome>src</Nome>
+		<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto</Path>
+		<LFich>
+			<Ficheiro>
+				<Nome>Diretoria.cpp</Nome>
+				<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/src</Path>
+				<Tamanho>13009</Tamanho>
+			</Ficheiro>
+			<Ficheiro>
+				<Nome>Ficheiro.cpp</Nome>
+				<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/src</Path>
+				<Tamanho>1183</Tamanho>
+			</Ficheiro>
+			<Ficheiro>
+				<Nome>ObjetoGeral.cpp</Nome>
+				<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/src</Path>
+				<Tamanho>719</Tamanho>
+			</Ficheiro>
+			<Ficheiro>
+				<Nome>SistemaFicheiros.cpp</Nome>
+				<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/src</Path>
+				<Tamanho>6029</Tamanho>
+			</Ficheiro>
+			<Ficheiro>
+				<Nome>Uteis.cpp</Nome>
+				<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto/src</Path>
+				<Tamanho>13407</Tamanho>
+			</Ficheiro>
+		</LFich>
+	</Diretoria>
+	</LDir>
+	<LFich>
+		<Ficheiro>
+			<Nome>main.cpp</Nome>
+			<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto</Path>
+			<Tamanho>221</Tamanho>
+		</Ficheiro>
+		<Ficheiro>
+			<Nome>Projeto.cbp</Nome>
+			<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto</Path>
+			<Tamanho>1573</Tamanho>
+		</Ficheiro>
+		<Ficheiro>
+			<Nome>Projeto.depend</Nome>
+			<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto</Path>
+			<Tamanho>2778</Tamanho>
+		</Ficheiro>
+		<Ficheiro>
+			<Nome>Projeto.layout</Nome>
+			<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto</Path>
+			<Tamanho>2698</Tamanho>
+		</Ficheiro>
+		<Ficheiro>
+			<Nome>Teste.txt</Nome>
+			<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto</Path>
+			<Tamanho>5354</Tamanho>
+		</Ficheiro>
+		<Ficheiro>
+			<Nome>Tree.txt</Nome>
+			<Path>C:/Users/Pedro Guedes/Documents/GitHub/Projeto-POO/Projeto</Path>
+			<Tamanho>454</Tamanho>
+		</Ficheiro>
+	</LFich>
+</Diretoria>
+</SistemaFicheiros>
+

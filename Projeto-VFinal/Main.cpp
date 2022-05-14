@@ -8,5 +8,6 @@ int main()
 	SistemaFicheiros* F = new SistemaFicheiros();
 	Menus::Select(F);
 
+	delete F;
 	return 0;
 }

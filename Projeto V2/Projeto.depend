@@ -1,0 +1,98 @@
+# depslib dependency file v1.0
+1640212844 source:c:\users\pedro guedes\desktop\projeto\main.cpp
+	"main.h"
+	"SistemaFicheiros.h"
+	"Uteis.h"
+
+1640273407 source:c:\users\pedro guedes\desktop\projeto\src\diretoria.cpp
+	"Diretoria.h"
+
+1640270850 c:\users\pedro guedes\desktop\projeto\include\diretoria.h
+	<ObjetoGeral.h>
+	"Ficheiro.h"
+
+1640270822 c:\users\pedro guedes\desktop\projeto\include\objetogeral.h
+	"main.h"
+
+1640273407 source:c:\users\pedro guedes\desktop\projeto\src\ficheiro.cpp
+	"Ficheiro.h"
+
+1640273051 c:\users\pedro guedes\desktop\projeto\include\ficheiro.h
+	<ObjetoGeral.h>
+
+1640211235 source:c:\users\pedro guedes\desktop\projeto\src\objetogeral.cpp
+	"ObjetoGeral.h"
+
+1640271079 source:c:\users\pedro guedes\desktop\projeto\src\sistemaficheiros.cpp
+	"SistemaFicheiros.h"
+
+1640270284 c:\users\pedro guedes\desktop\projeto\include\sistemaficheiros.h
+	"main.h"
+	"Diretoria.h"
+	"Ficheiro.h"
+
+1640210925 c:\users\pedro guedes\desktop\projeto\include\main.h
+	<iostream>
+	<list>
+	<string>
+	<dirent.h>
+	<locale.h>
+	<sys/stat.h>
+	<time.h>
+
+1640271145 source:c:\users\pedro guedes\desktop\projeto\src\uteis.cpp
+	"Uteis.h"
+
+1640213866 c:\users\pedro guedes\desktop\projeto\include\uteis.h
+	"main.h"
+	"SistemaFicheiros.h"
+
+1641144345 source:c:\users\pedro guedes\documents\github\projeto-poo\projeto\main.cpp
+	"main.h"
+	"SistemaFicheiros.h"
+	"Uteis.h"
+
+1640614664 c:\users\pedro guedes\documents\github\projeto-poo\projeto\include\main.h
+	<iostream>
+	<list>
+	<string>
+	<dirent.h>
+	<locale.h>
+	<sys/stat.h>
+	<time.h>
+	<fstream>
+
+1640787230 c:\users\pedro guedes\documents\github\projeto-poo\projeto\include\sistemaficheiros.h
+	"main.h"
+	"Diretoria.h"
+	"Ficheiro.h"
+
+1640892127 c:\users\pedro guedes\documents\github\projeto-poo\projeto\include\diretoria.h
+	<ObjetoGeral.h>
+	"Ficheiro.h"
+
+1640796060 c:\users\pedro guedes\documents\github\projeto-poo\projeto\include\objetogeral.h
+	"main.h"
+
+1640892055 c:\users\pedro guedes\documents\github\projeto-poo\projeto\include\ficheiro.h
+	<ObjetoGeral.h>
+
+1640892127 c:\users\pedro guedes\documents\github\projeto-poo\projeto\include\uteis.h
+	"main.h"
+	"SistemaFicheiros.h"
+
+1640727950 source:c:\users\pedro guedes\documents\github\projeto-poo\projeto\src\ficheiro.cpp
+	"Ficheiro.h"
+
+1640616334 source:c:\users\pedro guedes\documents\github\projeto-poo\projeto\src\objetogeral.cpp
+	"ObjetoGeral.h"
+
+1640892213 source:c:\users\pedro guedes\documents\github\projeto-poo\projeto\src\uteis.cpp
+	"Uteis.h"
+
+1641149895 source:c:\users\pedro guedes\documents\github\projeto-poo\projeto\src\diretoria.cpp
+	"Diretoria.h"
+
+1641143968 source:c:\users\pedro guedes\documents\github\projeto-poo\projeto\src\sistemaficheiros.cpp
+	"SistemaFicheiros.h"
+
